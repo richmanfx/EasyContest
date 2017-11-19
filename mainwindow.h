@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+class QTextBrowser;
+
 namespace Ui {
 class MainWindow;
 }
@@ -16,10 +18,12 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_infoButton_clicked();
+    void on_infoButton_clicked();       // Объявление слота
 
 private:
     Ui::MainWindow *ui;
+    QTextBrowser *textBrowser;
+
 };
 
 #endif // MAINWINDOW_H
