@@ -64,7 +64,7 @@
           </font>
          </property>
          <property name="text">
-          <string>SDR info</string>
+          <string>Connect</string>
          </property>
         </widget>
        </item>

@@ -24,6 +24,9 @@ private:
     Ui::MainWindow *ui;
     QTextBrowser *textBrowser;
 
+signals:
+
+
 };
 
 #endif // MAINWINDOW_H

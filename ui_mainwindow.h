@@ -87,7 +87,7 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Easy Contest", Q_NULLPTR));
-        infoButton->setText(QApplication::translate("MainWindow", "SDR info", Q_NULLPTR));
+        infoButton->setText(QApplication::translate("MainWindow", "&Connect", Q_NULLPTR));
     } // retranslateUi
 
 };
