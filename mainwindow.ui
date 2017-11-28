@@ -31,6 +31,10 @@
   <property name="windowTitle">
    <string>Easy Contest</string>
   </property>
+  <property name="icon">
+   <iconset resource="../../resource/resource.qrc">
+    <normaloff>:/clean.png</normaloff>:/clean.png</iconset>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">

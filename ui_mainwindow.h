@@ -79,6 +79,7 @@ public:
 
         MainWindow->setCentralWidget(centralWidget);
 
+
         retranslateUi(MainWindow);
 
         QMetaObject::connectSlotsByName(MainWindow);

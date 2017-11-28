@@ -41,3 +41,7 @@ SOURCES += \
 
 # Подключить файлы ресурсов
 RESOURCES += resource/resource.qrc
+
+# Подключить библиотеки
+include(libs/TciClient/TciClient.pri)
+include(libs/QCustomPlot/QCustomPlot.pri)

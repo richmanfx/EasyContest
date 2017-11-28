@@ -2,6 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <TciClient>
+#include <QCustomPlot>
+
+using namespace ExpertElectronics;
 
 class QTextBrowser;
 
@@ -18,11 +22,13 @@ public:
     ~MainWindow();
 
 private slots:
+    void onConnect(bool state);
     void on_infoButton_clicked();       // Объявление слота
 
 private:
     Ui::MainWindow *ui;
     QTextBrowser *textBrowser;
+    TciClient m_tciClient;
 
 signals:
 
