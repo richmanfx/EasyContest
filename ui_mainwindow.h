@@ -33,6 +33,7 @@ public:
     QTextBrowser *textBrowser;
     QVBoxLayout *verticalLayout;
     QPushButton *infoButton;
+    QPushButton *startButton;
     QSpacerItem *verticalSpacer;
 
     void setupUi(QMainWindow *MainWindow)

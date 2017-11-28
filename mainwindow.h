@@ -29,6 +29,7 @@ private:
     Ui::MainWindow *ui;
     QTextBrowser *textBrowser;
     TciClient m_tciClient;
+    QCustomPlot *pPlotter;
 
 signals:
 
