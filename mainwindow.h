@@ -2,10 +2,12 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <TciClient>
-#include <QCustomPlot>
+#include <QSettings>
+#include <QDir>
+//#include <TciClient>
+//#include <QCustomPlot>
 
-using namespace ExpertElectronics;
+//using namespace ExpertElectronics;
 
 class QTextBrowser;
 
@@ -18,18 +20,23 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(QWidget *parent = 0, QString name = "MainForm");
     ~MainWindow();
 
+public:
+    void saveSettings();
+    void loadSettings();
+
 private slots:
-    void onConnect(bool state);
+//    void onConnect(bool state);
     void on_infoButton_clicked();       // Объявление слота
 
 private:
     Ui::MainWindow *ui;
     QTextBrowser *textBrowser;
-    TciClient m_tciClient;
-    QCustomPlot *pPlotter;
+    QSettings *settings;
+//    TciClient m_tciClient;
+//    QCustomPlot *pPlotter;
 
 signals:
 
