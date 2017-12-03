@@ -17,27 +17,33 @@ unix {
   CONFIG(debug  , debug|release): DESTDIR = bin/debug      # debug
 }
 
+# Ворнинги при использовании устаревших Qt функций
+DEFINES += QT_DEPRECATED_WARNINGS
+
 # Директории для временных файлов
 MOC_DIR     = tmp
 OBJECTS_DIR = tmp
 RCC_DIR     = tmp
 UI_DIR      = tmp
 
-# Ворнинги при использовании устаревших Qt функций
-DEFINES += QT_DEPRECATED_WARNINGS
-
 # Разрешить синтаксис С++11
 CONFIG += c++11
 
-INCLUDEPATH += .
+# INCLUDEPATH += .
 
-# Input
-HEADERS += mainwindow.h ui_mainwindow.h
-FORMS += mainwindow.ui
+##### Input #####
 
 SOURCES += \
-  main.cpp \
-  mainwindow.cpp
+	source/main.cpp \
+	source/gui/mainwindow.cpp
+
+HEADERS += \ 
+	source/gui/mainwindow.h
+
+FORMS += \
+	source/gui/mainwindow.ui
+
 
 # Подключить файлы ресурсов
 RESOURCES += resource/resource.qrc
+
