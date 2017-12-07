@@ -1,0 +1,14 @@
+[General]
+SunSDR2Host=127.0.0.1
+SunSDR2Port=40001
+
+[Keys]
+Breack=Escape
+Clear=Ctrl+a
+CwDown=Prior
+CwUp=Next
+NextField=space
+SendMsg=Return
+
+[Windows]
+EasyContest\geometry=@Rect(200 200 500 430)

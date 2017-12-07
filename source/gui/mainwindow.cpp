@@ -59,7 +59,7 @@ void MainWindow::loadSettings()
     // Считать геометрию всех окон из настроек
     settings->beginGroup("Windows");
     settings->beginGroup(objectName());
-    setGeometry(settings->value("geometry", QRect(200, 200, 300, 300)).toRect());
+    setGeometry(settings->value("geometry", QRect(300, 300, 500, 430)).toRect());
     settings->endGroup();
     settings->endGroup();
 }
