@@ -4,11 +4,12 @@ SunSDR2Port=40001
 
 [Keys]
 Breack=Escape
-Clear=Ctrl+a
 CwDown=Prior
 CwUp=Next
 NextField=space
 SendMsg=Return
+Clear=Ctrl+a
+Help=Ctrl+h
 
 [Windows]
-EasyContest\geometry=@Rect(200 200 500 430)
+EasyContest\geometry=@Rect(527 122 510 414)

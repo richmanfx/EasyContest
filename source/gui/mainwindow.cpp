@@ -6,7 +6,9 @@ MainWindow::MainWindow(QWidget *parent, QString name) :
     setupUi(this);
 
     // Настройки приложения, читать из INI-файла
-    settings = new QSettings(QDir::homePath() + QDir::separator() + ".ec.conf", QSettings::IniFormat, this);
+    QString configDir = ".easycontest";
+    QString cofigFile = ".ec.cnf";
+    settings = new QSettings(QDir::homePath() + QDir::separator() + configDir + QDir::separator() + cofigFile, QSettings::IniFormat, this);
     setObjectName(name);
     loadSettings();
     sdrConnect();
@@ -51,9 +53,9 @@ void MainWindow::saveSettings()
 void MainWindow::loadSettings()
 {
     // Хост и порт для подключения по TCI к программе ExpertSDR
-    host = settings->value("SunSDR2Host");
+    host = settings->value("SunSDR2Host", "127.0.0.1");
     teLog->append("Настройки:\n\tSunSDR2Host -> " + host.toString());
-    port = settings->value("SunSDR2Port");
+    port = settings->value("SunSDR2Port", "40001");
     teLog->append("\tSunSDR2Port -> " + port.toString());
 
     // Считать геометрию всех окон из настроек
