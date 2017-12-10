@@ -24,6 +24,8 @@ MainWindow::MainWindow(QWidget *parent, QString name) :
     // Подключение к ExpertSDR2
     sdrConnect();
 
+
+
     // Соединиться по кнопке "Connect"
     connect(pbConnect, &QPushButton::clicked, this, &MainWindow::onConnect);
 
@@ -96,6 +98,30 @@ void MainWindow::sdrConnect() {
     m_tciClient.open(t_url);
 }
 
+// Контекстное меню
+void MainWindow::contextMenuEvent(QContextMenuEvent *event)
+{
+    QMenu *menu = new QMenu();
+
+    QAction *aboutAction = new QAction("About", this);
+    connect(aboutAction, SIGNAL(triggered(bool)), this, SLOT(aboutAction()));
+//    menu->addAction("&About", this, SLOT(aboutAction()), Qt::CTRL + Qt::ALT + Qt::Key_A);
+//    QShortcut* pAboutShortcut = new QShortcut(Qt::CTRL + Qt::Key_A, this, SLOT(aboutAction()));
+    menu->addAction(aboutAction);
+
+    menu->addSeparator();
+
+    QAction *exitAction = new QAction("Exit", this);
+    connect(exitAction, SIGNAL(triggered(bool)), this, SLOT(exitAction()));
+//    menu->addAction("&Exit", this, SLOT(exitAction()), Qt::CTRL + Qt::ALT + Qt::Key_X);
+//    QShortcut* pAboutShortcut = new QShortcut(Qt::CTRL + Qt::Key_A, this, SLOT(aboutAction()));
+//    exitAction->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_X));
+//    exitAction->setShortcut(tr("Ctrl+X"));
+    menu->addAction(exitAction);
+
+    menu->exec(QCursor::pos());
+}
+
 void MainWindow::onConnect(bool state) {
     state = true;
     if (state) {
@@ -119,4 +145,16 @@ void MainWindow::onConnectStatus(bool state) {
         pbConnect->setChecked(false);
         sbStatus->showMessage(tr("Disconnected."), 2000);
     }
+}
+
+// Выход из приложения
+void MainWindow::exitAction()
+{
+    this->close();
+}
+
+// Вывод окна "О программе"
+void MainWindow::aboutAction()
+{
+    teLog->append("Вывод окна Абоут!");
 }

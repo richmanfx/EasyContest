@@ -11,8 +11,7 @@
 
 using namespace ExpertElectronics;
 
-class MainWindow : public QMainWindow, protected Ui::MainWindow
-{
+class MainWindow : public QMainWindow, protected Ui::MainWindow {
     Q_OBJECT
 
 public:
@@ -21,11 +20,14 @@ public:
     void loadSettings();
     void loadContestSettings();
     void sdrConnect();
+    void contextMenuEvent(QContextMenuEvent *event);
     ~MainWindow();
 
 private slots:
     void onConnect(bool state);
     void onConnectStatus(bool state);
+    void exitAction();
+    void aboutAction();
 
 private:
     Ui::MainWindow *ui;
@@ -44,6 +46,8 @@ private:
     QVariant tour_count;        // Количество минитуров
     QVariant tour_duration;     // Длительность одного минитура в минутах
     QVariant valid_bands;       // Допустимые диапазоны
+
+
 
 
 signals:
