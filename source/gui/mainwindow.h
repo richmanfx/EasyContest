@@ -9,6 +9,8 @@
 
 #include "ui_mainwindow.h"
 
+#define VERSION "0.1.0"
+
 using namespace ExpertElectronics;
 
 class MainWindow : public QMainWindow, protected Ui::MainWindow {

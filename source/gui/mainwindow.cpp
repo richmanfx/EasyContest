@@ -156,5 +156,5 @@ void MainWindow::exitAction()
 // Вывод окна "О программе"
 void MainWindow::aboutAction()
 {
-    teLog->append("Вывод окна Абоут!");
+    QMessageBox::about(0, "About", QString("Программа для CW контестов\n\nVersion: %1\n\n").arg(VERSION));
 }
