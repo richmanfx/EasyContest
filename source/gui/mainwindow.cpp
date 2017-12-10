@@ -1,16 +1,27 @@
 #include "mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent, QString name) : 
-    QMainWindow(parent), pPlotter(new QCustomPlot)
-{
+    QMainWindow(parent), pPlotter(new QCustomPlot) {
     setupUi(this);
 
     // Настройки приложения, читать из INI-файла
     QString configDir = ".easycontest";
-    QString cofigFile = ".ec.cnf";
-    settings = new QSettings(QDir::homePath() + QDir::separator() + configDir + QDir::separator() + cofigFile, QSettings::IniFormat, this);
+    QString configFile = "ec.cnf";
+    settings = new QSettings(QDir::homePath() + QDir::separator() + configDir + QDir::separator() + configFile, QSettings::IniFormat, this);
+    settings->setIniCodec("UTF-8");
     setObjectName(name);
     loadSettings();
+
+    // Прочитать настройки из контест-конфига
+    QString contestConfigDir = "contests";
+    QString contestConfigFile = "minitest.ec";
+    QString fullContestConfigFile =
+            QDir::homePath() + QDir::separator() + configDir + QDir::separator() + contestConfigDir + QDir::separator() + contestConfigFile;
+    contestSettings = new QSettings(fullContestConfigFile, QSettings::IniFormat);
+    contestSettings->setIniCodec("UTF-8");
+    loadContestSettings();
+
+    // Подключение к ExpertSDR2
     sdrConnect();
 
     // Соединиться по кнопке "Connect"
@@ -32,15 +43,14 @@ MainWindow::MainWindow(QWidget *parent, QString name) :
 
 }
 
-MainWindow::~MainWindow()
-{
+MainWindow::~MainWindow() {
     saveSettings();     // Сохранить настройки при выходе
 }
 
-void MainWindow::saveSettings()
-{
+void MainWindow::saveSettings() {
     // Host для подключения по TCI к программе ExpertSDR
     // settings->setValue("SunSDR2Host", "127.0.0.1");          // Писать не нужно пока, только читать их конфига
+    // Zb: s.setValue( "mykey", QString::fromUtf8( "Значение" ) );
 
     // Cохранение геометрии всех окон
     settings->beginGroup("Windows");
@@ -50,13 +60,13 @@ void MainWindow::saveSettings()
     settings->endGroup();
 }
 
-void MainWindow::loadSettings()
-{
+// Считать настройки из главного INI-файла
+void MainWindow::loadSettings() {
     // Хост и порт для подключения по TCI к программе ExpertSDR
     host = settings->value("SunSDR2Host", "127.0.0.1");
     teLog->append("Настройки:\n\tSunSDR2Host -> " + host.toString());
     port = settings->value("SunSDR2Port", "40001");
-    teLog->append("\tSunSDR2Port -> " + port.toString());
+    teLog->append("\tSunSDR2Port -> " + port.toString() + "\n");
 
     // Считать геометрию всех окон из настроек
     settings->beginGroup("Windows");
@@ -66,14 +76,27 @@ void MainWindow::loadSettings()
     settings->endGroup();
 }
 
-void MainWindow::sdrConnect()
-{
+// Считать настройки из файла конфигурации контеста
+void MainWindow::loadContestSettings() {
+    contest_name = contestSettings->value("contest_name");
+    tour_count = contestSettings->value("tour_count");
+    tour_duration = contestSettings->value("tour_duration");
+    valid_bands = contestSettings->value("valid_bands");
+
+    teLog->append("Настройки контеста:\n\t"
+                  + contest_name.toString() + "\n\t "
+                  + tour_count.toString() + "\n\t "
+                  + tour_duration.toString() + "\n\t "
+                  + valid_bands.toString() + "\n");
+}
+
+
+void MainWindow::sdrConnect() {
     QUrl t_url("ws://" + host.toString() + ":" + port.toString());
     m_tciClient.open(t_url);
 }
 
-void MainWindow::onConnect(bool state)
-{
+void MainWindow::onConnect(bool state) {
     state = true;
     if (state) {
         QUrl t_url("ws://" + host.toString() + ":" + port.toString());
@@ -88,8 +111,7 @@ void MainWindow::onConnect(bool state)
     }
 }
 
-void MainWindow::onConnectStatus(bool state)
-{
+void MainWindow::onConnectStatus(bool state) {
     if (state) {
 //        sbStatus->showMessage(tr("Connected."), 2000);
         sbStatus->showMessage("Connected");

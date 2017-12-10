@@ -19,6 +19,7 @@ public:
     explicit MainWindow(QWidget *parent = 0, QString name = "MainForm");
     void saveSettings();
     void loadSettings();
+    void loadContestSettings();
     void sdrConnect();
     ~MainWindow();
 
@@ -29,6 +30,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QSettings *settings;
+    QSettings *contestSettings;
 
     QCustomPlot *pPlotter;
     TciClient m_tciClient;
@@ -37,6 +39,12 @@ private:
 
     QVariant host;      // Хост и порт для подключения по TCI к программе ExpertSDR
     QVariant port;
+
+    QVariant contest_name;      // Название контеста
+    QVariant tour_count;        // Количество минитуров
+    QVariant tour_duration;     // Длительность одного минитура в минутах
+    QVariant valid_bands;       // Допустимые диапазоны
+
 
 signals:
 
