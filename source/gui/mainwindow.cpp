@@ -156,5 +156,8 @@ void MainWindow::exitAction()
 // Вывод окна "О программе"
 void MainWindow::aboutAction()
 {
-    QMessageBox::about(0, "About", QString("Программа для CW контестов\n\nVersion: %1\n\n").arg(VERSION));
+    QMessageBox::about(0, "About", QString(
+                "Программа для CW контестов<BR>"
+                "<FONT COLOR='BLUE'>Version</FONT>: <B><FONT COLOR='RED'>%1</FONT></B>").arg(VERSION));
 }
+
