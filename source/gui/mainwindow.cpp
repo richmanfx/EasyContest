@@ -66,7 +66,7 @@ void MainWindow::saveSettings() {
 void MainWindow::loadSettings() {
     // Хост и порт для подключения по TCI к программе ExpertSDR
     host = settings->value("SunSDR2Host", "127.0.0.1");
-    teLog->append("Настройки:\n\tSunSDR2Host -> " + host.toString());
+    teLog->append(tr("Settings") + ":\n\tSunSDR2Host -> " + host.toString());
     port = settings->value("SunSDR2Port", "40001");
     teLog->append("\tSunSDR2Port -> " + port.toString() + "\n");
 
@@ -85,7 +85,7 @@ void MainWindow::loadContestSettings() {
     tour_duration = contestSettings->value("tour_duration");
     valid_bands = contestSettings->value("valid_bands");
 
-    teLog->append("Настройки контеста:\n\t"
+    teLog->append(tr("Contest settings:\n\t")
                   + contest_name.toString() + "\n\t "
                   + tour_count.toString() + "\n\t "
                   + tour_duration.toString() + "\n\t "
@@ -103,7 +103,7 @@ void MainWindow::contextMenuEvent(QContextMenuEvent *event)
 {
     QMenu *menu = new QMenu();
 
-    QAction *aboutAction = new QAction("About", this);
+    QAction *aboutAction = new QAction(tr("About"), this);
     connect(aboutAction, SIGNAL(triggered(bool)), this, SLOT(aboutAction()));
 //    menu->addAction("&About", this, SLOT(aboutAction()), Qt::CTRL + Qt::ALT + Qt::Key_A);
 //    QShortcut* pAboutShortcut = new QShortcut(Qt::CTRL + Qt::Key_A, this, SLOT(aboutAction()));
@@ -111,7 +111,7 @@ void MainWindow::contextMenuEvent(QContextMenuEvent *event)
 
     menu->addSeparator();
 
-    QAction *exitAction = new QAction("Exit", this);
+    QAction *exitAction = new QAction(tr("Exit"), this);
     connect(exitAction, SIGNAL(triggered(bool)), this, SLOT(exitAction()));
 //    menu->addAction("&Exit", this, SLOT(exitAction()), Qt::CTRL + Qt::ALT + Qt::Key_X);
 //    QShortcut* pAboutShortcut = new QShortcut(Qt::CTRL + Qt::Key_A, this, SLOT(aboutAction()));
@@ -127,23 +127,22 @@ void MainWindow::onConnect(bool state) {
     if (state) {
         QUrl t_url("ws://" + host.toString() + ":" + port.toString());
         m_tciClient.open(t_url);
-        teLog->append("open");
+        teLog->append(tr("open"));
         pbConnect->setChecked(true);
     } else {
         m_tciClient.close();
         teLog->append("state =" + state);
-        teLog->append("close");
+        teLog->append(tr("close"));
         pbConnect->setChecked(false);
     }
 }
 
 void MainWindow::onConnectStatus(bool state) {
     if (state) {
-//        sbStatus->showMessage(tr("Connected."), 2000);
-        sbStatus->showMessage("Connected");
+        sbStatus->showMessage(tr("Connected"),2000);
     } else {
         pbConnect->setChecked(false);
-        sbStatus->showMessage(tr("Disconnected."), 2000);
+        sbStatus->showMessage(tr("Disconnected"), 2000);
     }
 }
 
@@ -156,8 +155,7 @@ void MainWindow::exitAction()
 // Вывод окна "О программе"
 void MainWindow::aboutAction()
 {
-    QMessageBox::about(0, "About", QString(
-                "Программа для CW контестов<BR>"
-                "<FONT COLOR='BLUE'>Version</FONT>: <B><FONT COLOR='RED'>%1</FONT></B>").arg(VERSION));
+    QMessageBox::about(0, tr("About"), QString(tr(
+                "Contest-log program for CW contests<BR>"
+                "<FONT COLOR='BLUE'>Version</FONT>: <B><FONT COLOR='RED'>%1</FONT></B>")).arg(VERSION));
 }
-

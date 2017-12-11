@@ -3,7 +3,7 @@
 ######################################################################
 
 # Используемые Qt модули
-QT += widgets gui core network websockets
+QT += widgets gui core network websockets opengl
 
 # На выходе приложение, не библиотека
 TEMPLATE = app
@@ -47,5 +47,11 @@ include(libs/TciClient/TciClient.pri)
 include(libs/QCustomPlot/QCustomPlot.pri)
 
 # Подключить файлы ресурсов
-RESOURCES += resource/resource.qrc
+RESOURCES += resource/resource.qrc translations/resource.qrc
+
+# Локализация
+TRANSLATIONS += translations/EasyContest_ru.ts
+tr.commands = lupdate \"$$_PRO_FILE_\" && lrelease \"$$_PRO_FILE_\"
+    PRE_TARGETDEPS += tr
+    QMAKE_EXTRA_TARGETS += tr
 

@@ -4,6 +4,10 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    QTranslator translator;
+//    translator.load(":/translations/EasyContest_" + QLocale::system().name());
+    translator.load(":/translations/EasyContest_ru");
+    a.installTranslator(&translator);
     MainWindow w(0, "EasyContest" );
 
     // Только кнопки окна "свернуть" и "закрыть"
