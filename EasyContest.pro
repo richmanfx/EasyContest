@@ -35,10 +35,12 @@ CONFIG += c++11
 
 SOURCES += \
 	source/main.cpp \
-	source/gui/mainwindow.cpp
+	source/gui/mainwindow.cpp \
+    source/logging_categories.cpp 
 
 HEADERS += \ 
-	source/gui/mainwindow.h
+	source/gui/mainwindow.h \
+    source/logging_categories.h
 
 FORMS += \
 	source/gui/mainwindow.ui

@@ -17,7 +17,9 @@ class MainWindow : public QMainWindow, protected Ui::MainWindow {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0, QString name = "MainForm");
+    explicit MainWindow(
+            QWidget *parent = 0, QString name = "MainForm",
+            QString configDir = ".easycontest", QString configFile = "ec.cnf");
     void saveSettings();
     void loadSettings();
     void loadContestSettings();
@@ -46,10 +48,15 @@ private:
     QVariant host;      // Хост и порт для подключения по TCI к программе ExpertSDR
     QVariant port;
 
+    QVariant debug_level;        // Уровень логирования
     QVariant contest_name;      // Название контеста
     QVariant tour_count;        // Количество минитуров
     QVariant tour_duration;     // Длительность одного минитура в минутах
     QVariant valid_bands;       // Допустимые диапазоны
+
+//    QString configDir = ".easycontest";
+//    QString logFile ;
+
 
 signals:
 

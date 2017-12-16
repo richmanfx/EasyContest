@@ -1,12 +1,13 @@
+#include <QDebug>
 #include "mainwindow.h"
+#include "../logging_categories.h"
+#include <string>
 
-MainWindow::MainWindow(QWidget *parent, QString name) : 
+MainWindow::MainWindow(QWidget *parent, QString name, QString configDir, QString configFile) :
     QMainWindow(parent), pPlotter(new QCustomPlot) {
     setupUi(this);
 
     // Настройки приложения, читать из INI-файла
-    QString configDir = ".easycontest";
-    QString configFile = "ec.cnf";
     settings = new QSettings(QDir::homePath() + QDir::separator() + configDir + QDir::separator() + configFile, QSettings::IniFormat, this);
     settings->setIniCodec("UTF-8");
     setObjectName(name);
@@ -51,7 +52,7 @@ MainWindow::~MainWindow() {
 
 void MainWindow::saveSettings() {
     // Host для подключения по TCI к программе ExpertSDR
-    // settings->setValue("SunSDR2Host", "127.0.0.1");          // Писать не нужно пока, только читать их конфига
+//     settings->setValue("SunSDR2Host", "127.0.0.1");          // Писать не нужно пока, только читать их конфига
     // Zb: s.setValue( "mykey", QString::fromUtf8( "Значение" ) );
 
     // Cохранение геометрии всех окон
@@ -66,9 +67,9 @@ void MainWindow::saveSettings() {
 void MainWindow::loadSettings() {
     // Хост и порт для подключения по TCI к программе ExpertSDR
     host = settings->value("SunSDR2Host", "127.0.0.1");
-    teLog->append(tr("Settings") + ":\n\tSunSDR2Host -> " + host.toString());
+    qInfo(logInfo()) << "SunSDR2Host -> " + host.toString();
     port = settings->value("SunSDR2Port", "40001");
-    teLog->append("\tSunSDR2Port -> " + port.toString() + "\n");
+    qInfo(logInfo()) << "SunSDR2Port -> " + port.toString();
 
     // Считать геометрию всех окон из настроек
     settings->beginGroup("Windows");
@@ -76,6 +77,9 @@ void MainWindow::loadSettings() {
     setGeometry(settings->value("geometry", QRect(300, 300, 500, 430)).toRect());
     settings->endGroup();
     settings->endGroup();
+
+    // Уровень логирования
+    debug_level = settings->value("DebugLevel");
 }
 
 // Считать настройки из файла конфигурации контеста
@@ -134,12 +138,13 @@ void MainWindow::onConnect(bool state) {
     if (state) {
         QUrl t_url("ws://" + host.toString() + ":" + port.toString());
         m_tciClient.open(t_url);
-        teLog->append(tr("open"));
+        if (debug_level.toString().toLower() == "debug")
+            qDebug(logDebug()) << "open";
         pbConnect->setChecked(true);
     } else {
         m_tciClient.close();
-        teLog->append("state =" + state);
-        teLog->append(tr("close"));
+        if (debug_level.toString().toLower() == "debug")
+            qDebug(logDebug()) << "close";
         pbConnect->setChecked(false);
     }
 }
