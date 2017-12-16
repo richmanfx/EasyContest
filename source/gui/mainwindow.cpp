@@ -103,6 +103,12 @@ void MainWindow::contextMenuEvent(QContextMenuEvent *event)
 {
     QMenu *menu = new QMenu();
 
+    // Help
+    QAction *helpAction = new QAction(tr("Help"), this);
+    connect(helpAction, SIGNAL(triggered(bool)), this, SLOT(helpAction()));
+    menu->addAction(helpAction);
+
+    // About
     QAction *aboutAction = new QAction(tr("About"), this);
     connect(aboutAction, SIGNAL(triggered(bool)), this, SLOT(aboutAction()));
 //    menu->addAction("&About", this, SLOT(aboutAction()), Qt::CTRL + Qt::ALT + Qt::Key_A);
@@ -111,6 +117,7 @@ void MainWindow::contextMenuEvent(QContextMenuEvent *event)
 
     menu->addSeparator();
 
+    // Exit
     QAction *exitAction = new QAction(tr("Exit"), this);
     connect(exitAction, SIGNAL(triggered(bool)), this, SLOT(exitAction()));
 //    menu->addAction("&Exit", this, SLOT(exitAction()), Qt::CTRL + Qt::ALT + Qt::Key_X);
@@ -146,16 +153,22 @@ void MainWindow::onConnectStatus(bool state) {
     }
 }
 
-// Выход из приложения
-void MainWindow::exitAction()
-{
-    this->close();
+// Показать помощь в PDF
+void MainWindow::helpAction() {
+    QString help_file = QDir::currentPath() +
+                        QDir::separator() + "documentation" +
+                        QDir::separator() + "EasyContest.pdf";
+    QDesktopServices::openUrl(QUrl::fromLocalFile(help_file));
 }
 
 // Вывод окна "О программе"
-void MainWindow::aboutAction()
-{
+void MainWindow::aboutAction() {
     QMessageBox::about(0, tr("About"), QString(tr(
                 "Contest-log program for CW contests<BR>"
                 "<FONT COLOR='BLUE'>Version</FONT>: <B><FONT COLOR='RED'>%1</FONT></B>")).arg(VERSION));
+}
+
+// Выход из приложения
+void MainWindow::exitAction() {
+    this->close();
 }

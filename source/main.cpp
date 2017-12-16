@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     QTranslator translator;
-    translator.load("EasyContest_ru");
+    translator.load("translations/EasyContest");
     qApp->installTranslator(&translator);
 
     MainWindow w(0, "EasyContest" );

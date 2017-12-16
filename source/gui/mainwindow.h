@@ -6,7 +6,7 @@
 #include <QDir>
 #include <TciClient>
 #include <QCustomPlot>
-
+#include <QDesktopServices>
 #include "ui_mainwindow.h"
 
 #define VERSION "0.1.0"
@@ -28,8 +28,10 @@ public:
 private slots:
     void onConnect(bool state);
     void onConnectStatus(bool state);
-    void exitAction();
+    void helpAction();
     void aboutAction();
+    void exitAction();
+
 
 private:
     Ui::MainWindow *ui;
@@ -48,9 +50,6 @@ private:
     QVariant tour_count;        // Количество минитуров
     QVariant tour_duration;     // Длительность одного минитура в минутах
     QVariant valid_bands;       // Допустимые диапазоны
-
-
-
 
 signals:
 
