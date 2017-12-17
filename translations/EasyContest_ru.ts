@@ -21,7 +21,7 @@
         <location filename="../source/gui/mainwindow.cpp" line="92"/>
         <source>Contest settings:
 	</source>
-        <translation type="unfinished">Настройки контеста</translation>
+        <translation type="unfinished">Настройки контеста:</translation>
     </message>
     <message>
         <location filename="../source/gui/mainwindow.cpp" line="111"/>

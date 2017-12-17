@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=0.1.0
+Type=Application
+Name=EasyContest
+Comment=CW contest log
+Exec=/home/user_name/bin/ec/EasyContest
+Icon=/home/user_name/bin/ec/ec.png
+Path=/home/user_name/bin/ec
+Terminal=false
+StartupNotify=false
+GenericName=CW contest log
