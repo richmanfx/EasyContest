@@ -11,5 +11,5 @@ resources="resource/ec.png resource/EasyContest.desktop.example"
 translations=translations/*.qm
 configs=".easycontest/ec.cnf.example .easycontest/contests/*.ec.example"
 
-/bin/tar cvf EasyContest-${current_date}-${version}.tar.gz ${binarnic} ${docs} ${resources} ${translations} ${configs}
+/bin/tar cjvf EasyContest-${current_date}-${version}.tar.bz2 ${binarnic} ${docs} ${resources} ${translations} ${configs}
 
