@@ -47,6 +47,7 @@ FORMS += \
 
 include(libs/TciClient/TciClient.pri)
 include(libs/QCustomPlot/QCustomPlot.pri)
+include(libs/QGlobalShortcut/qglobalshortcut.pri)
 
 # Подключить файлы ресурсов
 RESOURCES += resource/resource.qrc translations/resource.qrc

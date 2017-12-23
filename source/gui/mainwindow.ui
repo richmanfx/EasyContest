@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>509</width>
-    <height>98</height>
+    <height>118</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -42,13 +42,26 @@
     <normaloff>:/clean.png</normaloff>:/clean.png</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
+   <widget class="QPushButton" name="pbConnect">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>20</y>
+      <width>80</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Connect</string>
+    </property>
+   </widget>
    <widget class="QLineEdit" name="callLineEdit">
     <property name="geometry">
      <rect>
       <x>20</x>
       <y>20</y>
       <width>351</width>
-      <height>25</height>
+      <height>31</height>
      </rect>
     </property>
    </widget>

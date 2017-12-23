@@ -5,6 +5,7 @@
 
 MainWindow::MainWindow(QWidget *parent, QString name, QString configDir, QString configFile) :
     QMainWindow(parent), pPlotter(new QCustomPlot) {
+
     setupUi(this);
 
     qInfo(logInfo()) << "==================================================";
@@ -24,6 +25,19 @@ MainWindow::MainWindow(QWidget *parent, QString name, QString configDir, QString
     contestSettings = new QSettings(fullContestConfigFile, QSettings::IniFormat);
     contestSettings->setIniCodec("UTF-8");
     loadContestSettings();
+
+    // Горячие клавиши
+    helpShortcut = new QGlobalShortcut(this);
+    connect(helpShortcut, &QGlobalShortcut::activated, this, &MainWindow::helpAction);
+    helpShortcut->setShortcut(QKeySequence("Ctrl+Alt+H"));
+
+    aboutShortcut = new QGlobalShortcut(this);
+    connect(aboutShortcut, &QGlobalShortcut::activated, this, &MainWindow::aboutAction);
+    aboutShortcut->setShortcut(QKeySequence("Ctrl+Alt+A"));
+
+    exitShortcut = new QGlobalShortcut(this);
+    connect(exitShortcut, &QGlobalShortcut::activated, this, &MainWindow::exitAction);
+    exitShortcut->setShortcut(QKeySequence("Ctrl+Alt+X"));
 
     // Подключение к ExpertSDR2
     sdrConnect();
@@ -116,26 +130,20 @@ void MainWindow::contextMenuEvent(QContextMenuEvent *event)
     QMenu *menu = new QMenu();
 
     // Help
-    QAction *helpAction = new QAction(tr("Help"), this);
+    QAction *helpAction = new QAction(tr("Help") + " (Ctrl+Alt+H)", this);
     connect(helpAction, SIGNAL(triggered(bool)), this, SLOT(helpAction()));
     menu->addAction(helpAction);
 
     // About
-    QAction *aboutAction = new QAction(tr("About"), this);
+    QAction *aboutAction = new QAction(tr("About") + " (Ctrt+Alt+A)", this);
     connect(aboutAction, SIGNAL(triggered(bool)), this, SLOT(aboutAction()));
-//    menu->addAction("&About", this, SLOT(aboutAction()), Qt::CTRL + Qt::ALT + Qt::Key_A);
-//    QShortcut* pAboutShortcut = new QShortcut(Qt::CTRL + Qt::Key_A, this, SLOT(aboutAction()));
     menu->addAction(aboutAction);
 
     menu->addSeparator();
 
     // Exit
-    QAction *exitAction = new QAction(tr("Exit"), this);
+    QAction *exitAction = new QAction(tr("Exit") + " (Ctr+Alt+X)", this);
     connect(exitAction, SIGNAL(triggered(bool)), this, SLOT(exitAction()));
-//    menu->addAction("&Exit", this, SLOT(exitAction()), Qt::CTRL + Qt::ALT + Qt::Key_X);
-//    QShortcut* pAboutShortcut = new QShortcut(Qt::CTRL + Qt::Key_A, this, SLOT(aboutAction()));
-//    exitAction->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_X));
-//    exitAction->setShortcut(tr("Ctrl+X"));
     menu->addAction(exitAction);
 
     menu->exec(QCursor::pos());

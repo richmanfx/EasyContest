@@ -8,6 +8,7 @@
 #include <QCustomPlot>
 #include <QDesktopServices>
 #include "ui_mainwindow.h"
+#include "qglobalshortcut.h"
 
 #define VERSION "0.1.0"
 
@@ -30,9 +31,11 @@ public:
 private slots:
     void onConnect(bool state);
     void onConnectStatus(bool state);
+
     void helpAction();
     void aboutAction();
     void exitAction();
+
 
 
 private:
@@ -48,14 +51,16 @@ private:
     QVariant host;      // Хост и порт для подключения по TCI к программе ExpertSDR
     QVariant port;
 
-    QVariant debug_level;        // Уровень логирования
+    QVariant debug_level;       // Уровень логирования
     QVariant contest_name;      // Название контеста
     QVariant tour_count;        // Количество минитуров
     QVariant tour_duration;     // Длительность одного минитура в минутах
     QVariant valid_bands;       // Допустимые диапазоны
 
-//    QString configDir = ".easycontest";
-//    QString logFile ;
+    // Горячие клавиши
+    QGlobalShortcut *helpShortcut;
+    QGlobalShortcut *aboutShortcut;
+    QGlobalShortcut *exitShortcut;
 
 
 signals:
