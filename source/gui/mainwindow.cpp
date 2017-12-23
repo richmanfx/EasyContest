@@ -7,6 +7,9 @@ MainWindow::MainWindow(QWidget *parent, QString name, QString configDir, QString
     QMainWindow(parent), pPlotter(new QCustomPlot) {
     setupUi(this);
 
+    qInfo(logInfo()) << "==================================================";
+    qInfo(logInfo()) << tr("Start program");
+
     // Настройки приложения, читать из INI-файла
     settings = new QSettings(QDir::homePath() + QDir::separator() + configDir + QDir::separator() + configFile, QSettings::IniFormat, this);
     settings->setIniCodec("UTF-8");
@@ -28,11 +31,11 @@ MainWindow::MainWindow(QWidget *parent, QString name, QString configDir, QString
 
 
     // Соединиться по кнопке "Connect"
-    connect(pbConnect, &QPushButton::clicked, this, &MainWindow::onConnect);
+//    connect(pbConnect, &QPushButton::clicked, this, &MainWindow::onConnect);
 
     connect(&m_tciClient, &TciClient::openStatusChanged, this, &MainWindow::onConnectStatus);
 
-    connect(&m_tciClient, &TciClient::message, teLog, &QTextEdit::append);
+//    connect(&m_tciClient, &TciClient::message, teLog, &QTextEdit::append);
 
 //    connect(&m_tciClient.trxState(), &TciTrxState::stoped , [=](){ pbStart->setChecked(false); });
 
@@ -42,9 +45,15 @@ MainWindow::MainWindow(QWidget *parent, QString name, QString configDir, QString
 //        else
 //            m_tciClient.trxState().stop();
 //    });
+//
+    connect(callLineEdit, &QLineEdit::returnPressed, [=]() {
+        if (!callLineEdit->text().isEmpty())
+            m_tciClient.trxState().setMacros(0u, callLineEdit->text());
+        callLineEdit->clear();
+    });
 
 
-}
+} // Tnd MainWindow
 
 MainWindow::~MainWindow() {
     saveSettings();     // Сохранить настройки при выходе
@@ -89,11 +98,10 @@ void MainWindow::loadContestSettings() {
     tour_duration = contestSettings->value("tour_duration");
     valid_bands = contestSettings->value("valid_bands");
 
-    teLog->append(tr("Contest settings:\n\t")
-                  + contest_name.toString() + "\n\t "
-                  + tour_count.toString() + "\n\t "
-                  + tour_duration.toString() + "\n\t "
-                  + valid_bands.toString() + "\n");
+    qInfo(logInfo()) << tr("Contest name") + ": " + contest_name.toString();
+    qInfo(logInfo()) << tr("Tour count") + ": " + tour_count.toString();
+    qInfo(logInfo()) << tr("Tour duration") + ": " + tour_duration.toString();
+    qInfo(logInfo()) << tr("Valid bands") + ": " + valid_bands.toString();
 }
 
 
@@ -140,12 +148,12 @@ void MainWindow::onConnect(bool state) {
         m_tciClient.open(t_url);
         if (debug_level.toString().toLower() == "debug")
             qDebug(logDebug()) << "open";
-        pbConnect->setChecked(true);
+//        pbConnect->setChecked(true);
     } else {
         m_tciClient.close();
         if (debug_level.toString().toLower() == "debug")
             qDebug(logDebug()) << "close";
-        pbConnect->setChecked(false);
+//        pbConnect->setChecked(false);
     }
 }
 
@@ -153,7 +161,7 @@ void MainWindow::onConnectStatus(bool state) {
     if (state) {
         sbStatus->showMessage(tr("Connected"),2000);
     } else {
-        pbConnect->setChecked(false);
+//        pbConnect->setChecked(false);
         sbStatus->showMessage(tr("Disconnected"), 2000);
     }
 }
