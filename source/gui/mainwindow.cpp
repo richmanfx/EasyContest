@@ -39,6 +39,10 @@ MainWindow::MainWindow(QWidget *parent, QString name, QString configDir, QString
     connect(exitShortcut, &QGlobalShortcut::activated, this, &MainWindow::exitAction);
     exitShortcut->setShortcut(QKeySequence("Ctrl+Alt+X"));
 
+    clearCallShortcut = new QGlobalShortcut(this);
+    connect(clearCallShortcut, &QGlobalShortcut::activated, this, &MainWindow::clearCall);
+    clearCallShortcut->setShortcut(QKeySequence("Alt+Q"));
+
     // Подключение к ExpertSDR2
     sdrConnect();
 
@@ -60,6 +64,8 @@ MainWindow::MainWindow(QWidget *parent, QString name, QString configDir, QString
 //            m_tciClient.trxState().stop();
 //    });
 //
+
+    // Начать передачу при нажатии Enter в поле ввода позывного
     connect(callLineEdit, &QLineEdit::returnPressed, [=]() {
         if (!callLineEdit->text().isEmpty())
             m_tciClient.trxState().setMacros(0u, callLineEdit->text());
@@ -147,6 +153,11 @@ void MainWindow::contextMenuEvent(QContextMenuEvent *event)
     menu->addAction(exitAction);
 
     menu->exec(QCursor::pos());
+}
+
+// Очистить поле ввода позывного
+void MainWindow::clearCall() {
+    callLineEdit->clear();
 }
 
 void MainWindow::onConnect(bool state) {

@@ -26,6 +26,7 @@ public:
     void loadContestSettings();
     void sdrConnect();
     void contextMenuEvent(QContextMenuEvent *event);
+    void clearCall();
     ~MainWindow();
 
 private slots:
@@ -61,6 +62,7 @@ private:
     QGlobalShortcut *helpShortcut;
     QGlobalShortcut *aboutShortcut;
     QGlobalShortcut *exitShortcut;
+    QGlobalShortcut *clearCallShortcut;
 
 
 signals:
