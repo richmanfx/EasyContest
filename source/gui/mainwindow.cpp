@@ -204,3 +204,31 @@ void MainWindow::aboutAction() {
 void MainWindow::exitAction() {
     this->close();
 }
+
+// Метод для перемещения беззаголовочного окна
+void MainWindow::mouseMoveEvent( QMouseEvent* e ) {
+    if( e->buttons() | Qt::LeftButton ) {
+        setGeometry(
+            pos().x() + ( e->x() - dx ),
+            pos().y() + ( e->y() - dy ),
+            width(),
+            height()
+        );
+    }
+}
+
+// Метод для перемещения беззаголовочного окна
+void MainWindow::mousePressEvent( QMouseEvent* e ) {
+    if( e->button() == Qt::LeftButton ) {
+        dx = e->x();
+        dy = e->y();
+        setCursor( Qt::OpenHandCursor );
+    }
+}
+
+// Метод для перемещения беззаголовочного окна
+void MainWindow::mouseReleaseEvent( QMouseEvent* e ) {
+    if( e->button() == Qt::LeftButton ) {
+        setCursor( Qt::ArrowCursor );
+    }
+}

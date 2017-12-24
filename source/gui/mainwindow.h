@@ -37,6 +37,9 @@ private slots:
     void aboutAction();
     void exitAction();
 
+    void mouseMoveEvent(QMouseEvent *e);
+    void mousePressEvent(QMouseEvent *e);
+    void mouseReleaseEvent(QMouseEvent *e);
 
 
 private:
@@ -64,6 +67,9 @@ private:
     QGlobalShortcut *exitShortcut;
     QGlobalShortcut *clearCallShortcut;
 
+    // Изменения координат при перемещении беззаголовочного окна
+    int dx;
+    int dy;
 
 signals:
 

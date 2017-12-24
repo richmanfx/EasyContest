@@ -36,7 +36,8 @@ int main(int argc, char *argv[])
     MainWindow w(0, "EasyContest", configDir, configFile);
 
     // Только кнопки окна "свернуть" и "закрыть"
-    w.setWindowFlags(Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint);
+//    w.setWindowFlags(Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint);
+    w.setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
 
     // Настройки
     QApplication::setOrganizationName("R5AM");
