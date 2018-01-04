@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent, QString name, QString configDir, QString
 
     setupUi(this);
 
-    qInfo(logInfo()) << "==================================================";
+    qInfo(logInfo()) << "=====================================================";
     qInfo(logInfo()) << tr("Start program");
 
     // Настройки приложения, читать из INI-файла
