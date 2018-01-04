@@ -8,7 +8,7 @@ Russian_  /  English_
 
 ----------
 
-.. _Russian:
+.. _russian:
 |rus-flag|
 
 
@@ -71,7 +71,7 @@ www.r5am.ru/content/Programs/c-plus-plus/easycontest/documentation-ru.html
 
 ----------
 
-.. _English:
+.. _english:
 |eng-flag|
 
 
