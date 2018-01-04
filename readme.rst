@@ -66,9 +66,8 @@ www.r5am.ru/content/Programs/c-plus-plus/easycontest/documentation-ru.html
 
 Контакты
 --------
-E-mail: r5am@mail.ru
-
-Site: www.r5am.ru
+ - E-mail: r5am@mail.ru
+ - Site: www.r5am.ru
 
 ----------
 
