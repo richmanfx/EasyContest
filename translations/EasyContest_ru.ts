@@ -9,9 +9,8 @@
         <translation type="unfinished">Easy Contest</translation>
     </message>
     <message>
-        <location filename="../source/gui/mainwindow.ui" line="55"/>
         <source>Connect</source>
-        <translation type="unfinished">Соединение</translation>
+        <translation type="obsolete">Соединение</translation>
     </message>
     <message>
         <source>Settings</source>
@@ -72,14 +71,12 @@
         <translation type="obsolete">закрыто</translation>
     </message>
     <message>
-        <location filename="../source/gui/mainwindow.cpp" line="181"/>
         <source>Connected</source>
-        <translation type="unfinished">Подключено</translation>
+        <translation type="obsolete">Подключено</translation>
     </message>
     <message>
-        <location filename="../source/gui/mainwindow.cpp" line="184"/>
         <source>Disconnected</source>
-        <translation type="unfinished">Отключено</translation>
+        <translation type="obsolete">Отключено</translation>
     </message>
     <message>
         <location filename="../source/gui/mainwindow.cpp" line="198"/>

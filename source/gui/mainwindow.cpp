@@ -178,10 +178,10 @@ void MainWindow::onConnect(bool state) {
 
 void MainWindow::onConnectStatus(bool state) {
     if (state) {
-        sbStatus->showMessage(tr("Connected"),2000);
+//        sbStatus->showMessage(tr("Connected"),2000);
     } else {
 //        pbConnect->setChecked(false);
-        sbStatus->showMessage(tr("Disconnected"), 2000);
+//        sbStatus->showMessage(tr("Disconnected"), 2000);
     }
 }
 
