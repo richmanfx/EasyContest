@@ -1,15 +1,17 @@
 EasyContest
 ===========
 
-`Russian`_
-`English`_
+Russian_ / English_
 
 .. |rus-flag| image:: resource/rus-flag.png
 .. |eng-flag| image:: resource/eng-flag.png
 
 ----------
 
-.. _`Russian`:
+
+.. _Russian:
+
+
 |rus-flag|
 
 
@@ -72,7 +74,10 @@ www.r5am.ru/content/Programs/c-plus-plus/easycontest/documentation-ru.html
 
 ----------
 
+
 .. _English:
+
+
 |eng-flag|
 
 
