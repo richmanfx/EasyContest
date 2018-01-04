@@ -6,7 +6,7 @@ Russian_ |rus-flag| / English_ |eng-flag|
 .. |rus-flag| image:: resource/rus-flag.png
 .. |eng-flag| image:: resource/eng-flag.png
 
-__________
+* * *
 
 .. _Russian:
 
@@ -62,7 +62,12 @@ www.r5am.ru/content/Programs/c-plus-plus/easycontest/documentation-ru.html
 Рапорты об ошибках просьба направлять на E-mail: r5am@mail.ru
 
 
-__________
+Контакты
+--------
+E-mail: r5am@mail.ru     
+Site: www.r5am.ru
+
+* * *
 
 .. _English:
 
@@ -119,5 +124,5 @@ Bugs reports please send an E-mail: r5am@mail.ru
 
 Contacts
 --------
-E-mail: r5am@mail.ru
+E-mail: r5am@mail.ru     
 Site: www.r5am.ru
