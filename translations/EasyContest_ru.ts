@@ -4,9 +4,8 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../source/gui/mainwindow.ui" line="38"/>
         <source>Easy Contest</source>
-        <translation type="unfinished">Easy Contest</translation>
+        <translation type="obsolete">Easy Contest</translation>
     </message>
     <message>
         <source>Connect</source>
@@ -82,6 +81,17 @@
         <location filename="../source/gui/mainwindow.cpp" line="198"/>
         <source>Contest-log program for CW contests&lt;BR&gt;&lt;FONT COLOR=&apos;BLUE&apos;&gt;Version&lt;/FONT&gt;: &lt;B&gt;&lt;FONT COLOR=&apos;RED&apos;&gt;%1&lt;/FONT&gt;&lt;/B&gt;</source>
         <translation type="unfinished">Программа контест-лог для CW соревнований&lt;BR&gt;&lt;FONT COLOR=&apos;BLUE&apos;&gt;Версия&lt;/FONT&gt;: &lt;B&gt;&lt;FONT COLOR=&apos;RED&apos;&gt;%1&lt;/FONT&gt;&lt;/B&gt;</translation>
+    </message>
+    <message>
+        <location filename="../source/gui/mainwindow.ui" line="73"/>
+        <location filename="../source/gui/mainwindow.ui" line="108"/>
+        <location filename="../source/gui/mainwindow.ui" line="115"/>
+        <location filename="../source/gui/mainwindow.ui" line="122"/>
+        <location filename="../source/gui/mainwindow.ui" line="129"/>
+        <location filename="../source/gui/mainwindow.ui" line="136"/>
+        <location filename="../source/gui/mainwindow.ui" line="232"/>
+        <source>TextLabel</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
