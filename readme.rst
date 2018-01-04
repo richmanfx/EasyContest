@@ -1,7 +1,7 @@
 EasyContest
 ===========
 
-Russian_ |rus-flag| / English_ |eng-flag|
+Russian_  /  English_
 
 .. |rus-flag| image:: resource/rus-flag.png
 .. |eng-flag| image:: resource/eng-flag.png
@@ -129,5 +129,5 @@ Bugs reports please send an E-mail: r5am@mail.ru
 
 Contacts
 --------
-E-mail: r5am@mail.ru ::
-Site: www.r5am.ru
+ - E-mail: r5am@mail.ru
+ - Site: www.r5am.ru
