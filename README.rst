@@ -1,14 +1,14 @@
 EasyContest
 ===========
 
-Russian_ |rus-flag| / English_ |eng-flag|
+Russian_ / English_
 
 .. |rus-flag| image:: resource/rus-flag.png
 .. |eng-flag| image:: resource/eng-flag.png
 
 ----------
 
-.. _russian:
+.. _Russian:
 |rus-flag|
 
 
