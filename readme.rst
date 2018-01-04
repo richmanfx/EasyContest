@@ -63,10 +63,11 @@ www.r5am.ru/content/Programs/c-plus-plus/easycontest/documentation-ru.html
 ------------------
 Рапорты об ошибках просьба направлять на E-mail: r5am@mail.ru
 
-::
+
 Контакты
 --------
-E-mail: r5am@mail.ru     
+E-mail: r5am@mail.ru
+
 Site: www.r5am.ru
 
 ----------
@@ -123,10 +124,10 @@ Open source license type based on the **BSD** license provided in the file
 
 Bug Reporting
 -------------
-Bugs reports please send an E-mail: r5am@mail.ru ::
+Bugs reports please send an E-mail: r5am@mail.ru
 
 
 Contacts
 --------
-E-mail: r5am@mail.ru     
+E-mail: r5am@mail.ru ::
 Site: www.r5am.ru
