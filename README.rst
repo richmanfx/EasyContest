@@ -1,20 +1,21 @@
 EasyContest
 ===========
 
-Russian_ / English_
+`Russian`_
+`English`_
 
 .. |rus-flag| image:: resource/rus-flag.png
 .. |eng-flag| image:: resource/eng-flag.png
 
 ----------
 
-.. _Russian:
+.. _`Russian`:
 |rus-flag|
 
 
 Что это?
 --------
-EasyContest - это простой контест-лог для работы в **CW** соревнованиях. 
+**EasyContest** - это простой контест-лог для работы в **CW** соревнованиях. 
 Для взаимодействия с трансивером используется протокол **TCI** компании **Expert Electronics**:
 https://github.com/maksimus1210/TCI/tree/master/projects_example/TciClient
 
@@ -77,7 +78,7 @@ www.r5am.ru/content/Programs/c-plus-plus/easycontest/documentation-ru.html
 
 What is it?
 --------
-EasyContest is a simple contests log to work in **CW** contests.
+**EasyContest** is a simple contests log to work in **CW** contests.
 To communicate with the transceiver is used **TCI** protocol of **Expert Electronics** company:
 https://github.com/maksimus1210/TCI/tree/master/projects_example/TciClient
 
