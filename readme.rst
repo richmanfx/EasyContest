@@ -1,14 +1,14 @@
 EasyContest
 ===========
 
-Russian_ |rus-flag| / English_ |eng-flag|
+[Russian]_ |rus-flag| / [English]_ |eng-flag|
 
 .. |rus-flag| image:: resource/rus-flag.png
 .. |eng-flag| image:: resource/eng-flag.png
 
-* * *
+----------
 
-.. _Russian:
+.. [Russian]:
 
 Что это?
 --------
@@ -67,9 +67,9 @@ www.r5am.ru/content/Programs/c-plus-plus/easycontest/documentation-ru.html
 E-mail: r5am@mail.ru     
 Site: www.r5am.ru
 
-* * *
+----------
 
-.. _English:
+.. [English]:
 
 What is it?
 --------
