@@ -7,7 +7,6 @@ Russian_ |rus-flag| / English_ |eng-flag|
 .. |eng-flag| image:: resource/eng-flag.png
 
 __________
-
 .. _Russian:
 
 Что это?
@@ -63,5 +62,4 @@ www.r5am.ru/content/Programs/c-plus-plus/easycontest/documentation-ru.html
 
 
 __________
-
 .. _English:
