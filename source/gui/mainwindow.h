@@ -60,7 +60,7 @@ private:
     QVariant host;      // Хост и порт для подключения по TCI к программе ExpertSDR
     QVariant port;
     QVariant debug_level;       // Уровень логирования
-    QVariant time_shift;        // Сдвиг времени относительно компьютерного, в часах
+    QVariant time_shift;        // Сдвиг времени относительно компьютерного, в минутах
 
     // Цвет и размер шрифтов
     QVariant call_font_color;

@@ -88,6 +88,7 @@ MainWindow::MainWindow(QWidget *parent, QString name, QString configDir, QString
 
     // Вывести первоначальное время
     QTime current_time = QTime::currentTime();
+    current_time = current_time.addSecs(time_shift.toInt() * 60);   // Из минут в секунды
     time_label->setText(current_time.toString("hh:mm"));
 
     // Запустить таймер для вывода времени
@@ -217,13 +218,9 @@ void MainWindow::sdrConnect() {
 
 // Вывести на лейбл текущую дату
 void MainWindow::dateShow() {
-    QDate current_date = QDate::currentDate();
-    QString year = QString::number(current_date.year());
-    QString month = QString::number(current_date.month());
-    if(current_date.month() < 10) month = "0" + month;
-    QString day = QString::number(current_date.day());
-    if(current_date.day() < 10) day = "0" + day;
-    date_label->setText(year + "." + month + "." + day);
+    QDateTime current_date = QDateTime::currentDateTime();
+    current_date = current_date.addSecs(time_shift.toInt() * 60);   // Из минут в секунды
+    date_label->setText(current_date.toString("yyyy.MM.dd"));
 }
 
 // Вывести на лейбл текущее время
@@ -231,7 +228,9 @@ void MainWindow::timerEvent(QTimerEvent *timer_event) {
     if (timer_event->timerId() == timerId) {
         QTime current_time = QTime::currentTime();
 //        qInfo(logInfo()) << "current_time: " << current_time;
+        current_time = current_time.addSecs(time_shift.toInt() * 60);   // Из минут в секунды
         time_label->setText(current_time.toString("hh:mm"));
+        dateShow();
     }
 }
 
