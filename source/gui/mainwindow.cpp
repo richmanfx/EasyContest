@@ -3,6 +3,8 @@
 #include "../logging_categories.h"
 #include "../customlineedit.h"
 #include <string>
+#include <iostream>
+#include <iomanip>
 
 MainWindow::MainWindow(QWidget *parent, QString name, QString configDir, QString configFile) :
     QMainWindow(parent), pPlotter(new QCustomPlot) {
@@ -87,6 +89,8 @@ MainWindow::MainWindow(QWidget *parent, QString name, QString configDir, QString
     // Подключение к ExpertSDR2
     sdrConnect();
 
+    // Вывести дату
+    dateShow();
 
 
     // Соединиться по кнопке "Connect"
@@ -157,6 +161,9 @@ void MainWindow::loadSettings() {
     // Уровень логирования
     debug_level = settings->value("DebugLevel");
 
+    // Сдвиг времени в часах относително компьютерного
+    time_shift = settings->value("TimeShift");
+
     // Считать геометрию всех окон из настроек
     settings->beginGroup("Windows");
     settings->beginGroup(objectName());
@@ -166,7 +173,6 @@ void MainWindow::loadSettings() {
 
     // Цвет и размер шрифтов
     settings->beginGroup("Fonts");
-
     call_font_color = settings->value("CallFontColor");   // Цвет шрифта позывного
     call_font_size = settings->value("CallFontSize");     // Размер шрифта позывного
     call_font_bold = settings->value("CallFontBold");     // Жирность шрифта позывного
@@ -178,8 +184,9 @@ void MainWindow::loadSettings() {
 
     label_font_size = settings->value("LabelFontSize");        // Размер шрифта лейблов
     label_font_bold = settings->value("LabelFontBold");        // Жирность шрифта лейблов
-
     settings->endGroup();
+
+
 }
 
 // Считать настройки из файла конфигурации контеста
@@ -199,6 +206,17 @@ void MainWindow::loadContestSettings() {
 void MainWindow::sdrConnect() {
     QUrl t_url("ws://" + host.toString() + ":" + port.toString());
     m_tciClient.open(t_url);
+}
+
+// Вывести на лейбл текущую дату
+void MainWindow::dateShow() {
+    QDate current_date = QDate::currentDate();
+    QString year = QString::number(current_date.year());
+    QString month = QString::number(current_date.month());
+    if(current_date.month() < 10) month = "0" + month;
+    QString day = QString::number(current_date.day());
+    if(current_date.day() < 10) day = "0" + day;
+    date_label->setText(year + "." + month + "." + day);
 }
 
 // Контекстное меню
