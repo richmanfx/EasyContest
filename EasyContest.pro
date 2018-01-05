@@ -36,11 +36,13 @@ CONFIG += c++11
 SOURCES += \
 	source/main.cpp \
 	source/gui/mainwindow.cpp \
-    source/logging_categories.cpp 
+    source/logging_categories.cpp \ 
+    source/customlineedit.cpp
 
 HEADERS += \ 
 	source/gui/mainwindow.h \
-    source/logging_categories.h
+    source/logging_categories.h \
+    source/customlineedit.h
 
 FORMS += \
 	source/gui/mainwindow.ui
@@ -50,7 +52,7 @@ include(libs/QCustomPlot/QCustomPlot.pri)
 include(libs/QGlobalShortcut/qglobalshortcut.pri)
 
 # Подключить файлы ресурсов
-RESOURCES += resource/resource.qrc translations/resource.qrc
+RESOURCES += resource/resource.qrc 
 
 # Локализация
 TRANSLATIONS += translations/EasyContest_ru.ts

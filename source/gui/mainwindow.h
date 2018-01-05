@@ -9,6 +9,7 @@
 #include <QDesktopServices>
 #include "ui_mainwindow.h"
 #include "qglobalshortcut.h"
+#include "../customlineedit.h"
 
 #define VERSION "0.1.0"
 
@@ -36,6 +37,7 @@ private slots:
     void helpAction();
     void aboutAction();
     void exitAction();
+//    void nextLineEdit(CustomLineEdit *customLineEdit);
 
     void mouseMoveEvent(QMouseEvent *e);
     void mousePressEvent(QMouseEvent *e);

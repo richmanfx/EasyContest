@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>ec.png</file>
+        <file>../translations/EasyContest_ru.qm</file>
     </qresource>
 </RCC>
 

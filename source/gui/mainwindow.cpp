@@ -1,6 +1,7 @@
 #include <QDebug>
 #include "mainwindow.h"
 #include "../logging_categories.h"
+#include "../customlineedit.h"
 #include <string>
 
 MainWindow::MainWindow(QWidget *parent, QString name, QString configDir, QString configFile) :
@@ -71,6 +72,8 @@ MainWindow::MainWindow(QWidget *parent, QString name, QString configDir, QString
             m_tciClient.trxState().setMacros(0u, callLineEdit->text());
         callLineEdit->clear();
     });
+
+
 
 
 } // Tnd MainWindow
