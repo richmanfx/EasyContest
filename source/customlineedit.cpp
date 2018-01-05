@@ -35,7 +35,7 @@ void CustomLineEdit::focusInEvent( QFocusEvent *event ) {
 //      qInfo(logInfo()) << tr("Фокус получен!");
       CustomLineEdit::end(false);
       CustomLineEdit::focusOutEvent(event);
-    } else {
+    }  else {
         return CustomLineEdit::focusInEvent(event);
     }
 }

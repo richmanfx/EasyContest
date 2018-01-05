@@ -70,11 +70,21 @@ MainWindow::MainWindow(QWidget *parent, QString name, QString configDir, QString
 //    });
 //
 
-    // Начать передачу при нажатии Enter в поле ввода позывного
+    // Начать передачу при нажатии Enter в поле ввода позывного или номера
     connect(callLineEdit, &QLineEdit::returnPressed, [=]() {
         if (!callLineEdit->text().isEmpty())
             m_tciClient.trxState().setMacros(0u, callLineEdit->text());
         callLineEdit->clear();
+        numberLineEdit->clear();
+    });
+
+    // Начать передачу при нажатии Enter в поле ввода номера
+    connect(numberLineEdit, &QLineEdit::returnPressed, [=]() {
+        if (!callLineEdit->text().isEmpty())
+            m_tciClient.trxState().setMacros(0u, callLineEdit->text());
+        numberLineEdit->clear();
+        callLineEdit->clear();
+        callLineEdit->setFocus();
     });
 
 
