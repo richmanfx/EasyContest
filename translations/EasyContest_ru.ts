@@ -26,38 +26,38 @@
         <translation type="unfinished">Старт программы</translation>
     </message>
     <message>
-        <location filename="../source/gui/mainwindow.cpp" line="199"/>
+        <location filename="../source/gui/mainwindow.cpp" line="206"/>
         <source>Contest name</source>
         <translation type="unfinished">Название контеста</translation>
     </message>
     <message>
-        <location filename="../source/gui/mainwindow.cpp" line="200"/>
+        <location filename="../source/gui/mainwindow.cpp" line="207"/>
         <source>Tour count</source>
         <translation type="unfinished">Количество туров</translation>
     </message>
     <message>
-        <location filename="../source/gui/mainwindow.cpp" line="201"/>
+        <location filename="../source/gui/mainwindow.cpp" line="208"/>
         <source>Tour duration</source>
         <translation type="unfinished">Длительность тура</translation>
     </message>
     <message>
-        <location filename="../source/gui/mainwindow.cpp" line="202"/>
+        <location filename="../source/gui/mainwindow.cpp" line="209"/>
         <source>Valid bands</source>
         <translation type="unfinished">Допустимые диапазоны</translation>
     </message>
     <message>
-        <location filename="../source/gui/mainwindow.cpp" line="228"/>
+        <location filename="../source/gui/mainwindow.cpp" line="244"/>
         <source>Help</source>
         <translation type="unfinished">Помощь</translation>
     </message>
     <message>
-        <location filename="../source/gui/mainwindow.cpp" line="233"/>
-        <location filename="../source/gui/mainwindow.cpp" line="294"/>
+        <location filename="../source/gui/mainwindow.cpp" line="249"/>
+        <location filename="../source/gui/mainwindow.cpp" line="310"/>
         <source>About</source>
         <translation type="unfinished">О программе</translation>
     </message>
     <message>
-        <location filename="../source/gui/mainwindow.cpp" line="240"/>
+        <location filename="../source/gui/mainwindow.cpp" line="256"/>
         <source>Exit</source>
         <translation type="unfinished">Выход</translation>
     </message>
@@ -78,7 +78,7 @@
         <translation type="obsolete">Отключено</translation>
     </message>
     <message>
-        <location filename="../source/gui/mainwindow.cpp" line="294"/>
+        <location filename="../source/gui/mainwindow.cpp" line="310"/>
         <source>Contest-log program for CW contests&lt;BR&gt;&lt;FONT COLOR=&apos;BLUE&apos;&gt;Version&lt;/FONT&gt;: &lt;B&gt;&lt;FONT COLOR=&apos;RED&apos;&gt;%1&lt;/FONT&gt;&lt;/B&gt;</source>
         <translation type="unfinished">Программа контест-лог для CW соревнований&lt;BR&gt;&lt;FONT COLOR=&apos;BLUE&apos;&gt;Версия&lt;/FONT&gt;: &lt;B&gt;&lt;FONT COLOR=&apos;RED&apos;&gt;%1&lt;/FONT&gt;&lt;/B&gt;</translation>
     </message>

@@ -27,6 +27,7 @@ public:
     void loadContestSettings();
     void sdrConnect();
     void dateShow();
+    void timerEvent(QTimerEvent *timer_event);
     void contextMenuEvent(QContextMenuEvent *event);
     void clearCall();
     void clearAllFields();
@@ -87,6 +88,9 @@ private:
     // Изменения координат при перемещении беззаголовочного окна
     int dx;
     int dy;
+
+    // Идентификатор таймера
+    int timerId;
 
 signals:
 

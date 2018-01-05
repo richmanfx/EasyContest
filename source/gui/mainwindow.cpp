@@ -86,6 +86,13 @@ MainWindow::MainWindow(QWidget *parent, QString name, QString configDir, QString
     connect(clearAllLineEdit, &QGlobalShortcut::activated, this, &MainWindow::clearAllFields);
     clearAllLineEdit->setShortcut(QKeySequence("Alt+W"));
 
+    // Вывести первоначальное время
+    QTime current_time = QTime::currentTime();
+    time_label->setText(current_time.toString("hh:mm"));
+
+    // Запустить таймер для вывода времени
+    timerId = startTimer(10000);    // Время выводится 1 раз в 10 секунд
+
     // Подключение к ExpertSDR2
     sdrConnect();
 
@@ -217,6 +224,15 @@ void MainWindow::dateShow() {
     QString day = QString::number(current_date.day());
     if(current_date.day() < 10) day = "0" + day;
     date_label->setText(year + "." + month + "." + day);
+}
+
+// Вывести на лейбл текущее время
+void MainWindow::timerEvent(QTimerEvent *timer_event) {
+    if (timer_event->timerId() == timerId) {
+        QTime current_time = QTime::currentTime();
+//        qInfo(logInfo()) << "current_time: " << current_time;
+        time_label->setText(current_time.toString("hh:mm"));
+    }
 }
 
 // Контекстное меню
