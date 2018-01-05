@@ -83,13 +83,13 @@
         <translation type="unfinished">Программа контест-лог для CW соревнований&lt;BR&gt;&lt;FONT COLOR=&apos;BLUE&apos;&gt;Версия&lt;/FONT&gt;: &lt;B&gt;&lt;FONT COLOR=&apos;RED&apos;&gt;%1&lt;/FONT&gt;&lt;/B&gt;</translation>
     </message>
     <message>
-        <location filename="../source/gui/mainwindow.ui" line="73"/>
+        <location filename="../source/gui/mainwindow.ui" line="66"/>
+        <location filename="../source/gui/mainwindow.ui" line="101"/>
         <location filename="../source/gui/mainwindow.ui" line="108"/>
         <location filename="../source/gui/mainwindow.ui" line="115"/>
         <location filename="../source/gui/mainwindow.ui" line="122"/>
         <location filename="../source/gui/mainwindow.ui" line="129"/>
-        <location filename="../source/gui/mainwindow.ui" line="136"/>
-        <location filename="../source/gui/mainwindow.ui" line="232"/>
+        <location filename="../source/gui/mainwindow.ui" line="225"/>
         <source>TextLabel</source>
         <translation type="unfinished"></translation>
     </message>
