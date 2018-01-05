@@ -18,6 +18,42 @@ MainWindow::MainWindow(QWidget *parent, QString name, QString configDir, QString
     setObjectName(name);
     loadSettings();
 
+    // Выставить параметры шрифтов
+    QPalette *palette = new QPalette();
+    QFont field_font;
+    field_font.setFamily("Monospace");
+
+    // Поле ввода позывного
+    palette->setColor(QPalette::Text, call_font_color.toString());
+    callLineEdit->setPalette(*palette);
+    field_font.setBold(call_font_bold.toBool());
+    field_font.setPixelSize(call_font_size.toInt());
+    callLineEdit->setFont(field_font);
+
+    // Поле принимаемого номера
+    palette->setColor(QPalette::Text, rx_num_font_color.toString());
+    numberLineEdit->setPalette(*palette);
+    field_font.setBold(num_font_bold.toBool());
+    field_font.setPixelSize(num_font_size.toInt());
+    numberLineEdit->setFont(field_font);
+
+    // Поле-лейбл передаваемого номера
+    palette->setColor(QPalette::Base, "lightGray");
+    palette->setColor(QPalette::Text, tx_num_font_color.toString());
+    field_font.setBold(num_font_bold.toBool());
+    field_font.setPixelSize(num_font_size.toInt());
+    tx_num_label->setPalette(*palette); tx_num_label->setFont(field_font);
+
+    // Лейблы
+    field_font.setBold(label_font_bold.toBool());
+    field_font.setPixelSize(label_font_size.toInt());
+    band_label->setFont(field_font);
+    cw_speed_label->setFont(field_font);
+    CQ_SP_label->setFont(field_font);
+    date_label->setFont(field_font);
+    time_label->setFont(field_font);
+    auto_CQ_label->setFont(field_font);
+
     // Прочитать настройки из контест-конфига
     QString contestConfigDir = "contests";
     QString contestConfigFile = "minitest.ec";
@@ -111,11 +147,15 @@ void MainWindow::saveSettings() {
 
 // Считать настройки из главного INI-файла
 void MainWindow::loadSettings() {
+
     // Хост и порт для подключения по TCI к программе ExpertSDR
     host = settings->value("SunSDR2Host", "127.0.0.1");
     qInfo(logInfo()) << "SunSDR2Host -> " + host.toString();
     port = settings->value("SunSDR2Port", "40001");
     qInfo(logInfo()) << "SunSDR2Port -> " + port.toString();
+
+    // Уровень логирования
+    debug_level = settings->value("DebugLevel");
 
     // Считать геометрию всех окон из настроек
     settings->beginGroup("Windows");
@@ -124,8 +164,22 @@ void MainWindow::loadSettings() {
     settings->endGroup();
     settings->endGroup();
 
-    // Уровень логирования
-    debug_level = settings->value("DebugLevel");
+    // Цвет и размер шрифтов
+    settings->beginGroup("Fonts");
+
+    call_font_color = settings->value("CallFontColor");   // Цвет шрифта позывного
+    call_font_size = settings->value("CallFontSize");     // Размер шрифта позывного
+    call_font_bold = settings->value("CallFontBold");     // Жирность шрифта позывного
+
+    num_font_size = settings->value("NumFontSize");      // Размер шрифта номера
+    num_font_bold = settings->value("NumFontBold");      // Жирность шрифта номера
+    rx_num_font_color = settings->value("RxNumFontColor");    // Цвет шрифта RX номера
+    tx_num_font_color = settings->value("TxNumFontColor");    // Цвет шрифта TX номера
+
+    label_font_size = settings->value("LabelFontSize");        // Размер шрифта лейблов
+    label_font_bold = settings->value("LabelFontBold");        // Жирность шрифта лейблов
+
+    settings->endGroup();
 }
 
 // Считать настройки из файла конфигурации контеста

@@ -26,38 +26,38 @@
         <translation type="unfinished">Старт программы</translation>
     </message>
     <message>
-        <location filename="../source/gui/mainwindow.cpp" line="138"/>
+        <location filename="../source/gui/mainwindow.cpp" line="192"/>
         <source>Contest name</source>
         <translation type="unfinished">Название контеста</translation>
     </message>
     <message>
-        <location filename="../source/gui/mainwindow.cpp" line="139"/>
+        <location filename="../source/gui/mainwindow.cpp" line="193"/>
         <source>Tour count</source>
         <translation type="unfinished">Количество туров</translation>
     </message>
     <message>
-        <location filename="../source/gui/mainwindow.cpp" line="140"/>
+        <location filename="../source/gui/mainwindow.cpp" line="194"/>
         <source>Tour duration</source>
         <translation type="unfinished">Длительность тура</translation>
     </message>
     <message>
-        <location filename="../source/gui/mainwindow.cpp" line="141"/>
+        <location filename="../source/gui/mainwindow.cpp" line="195"/>
         <source>Valid bands</source>
         <translation type="unfinished">Допустимые диапазоны</translation>
     </message>
     <message>
-        <location filename="../source/gui/mainwindow.cpp" line="156"/>
+        <location filename="../source/gui/mainwindow.cpp" line="210"/>
         <source>Help</source>
         <translation type="unfinished">Помощь</translation>
     </message>
     <message>
-        <location filename="../source/gui/mainwindow.cpp" line="161"/>
-        <location filename="../source/gui/mainwindow.cpp" line="222"/>
+        <location filename="../source/gui/mainwindow.cpp" line="215"/>
+        <location filename="../source/gui/mainwindow.cpp" line="276"/>
         <source>About</source>
         <translation type="unfinished">О программе</translation>
     </message>
     <message>
-        <location filename="../source/gui/mainwindow.cpp" line="168"/>
+        <location filename="../source/gui/mainwindow.cpp" line="222"/>
         <source>Exit</source>
         <translation type="unfinished">Выход</translation>
     </message>
@@ -78,19 +78,43 @@
         <translation type="obsolete">Отключено</translation>
     </message>
     <message>
-        <location filename="../source/gui/mainwindow.cpp" line="222"/>
+        <location filename="../source/gui/mainwindow.cpp" line="276"/>
         <source>Contest-log program for CW contests&lt;BR&gt;&lt;FONT COLOR=&apos;BLUE&apos;&gt;Version&lt;/FONT&gt;: &lt;B&gt;&lt;FONT COLOR=&apos;RED&apos;&gt;%1&lt;/FONT&gt;&lt;/B&gt;</source>
         <translation type="unfinished">Программа контест-лог для CW соревнований&lt;BR&gt;&lt;FONT COLOR=&apos;BLUE&apos;&gt;Версия&lt;/FONT&gt;: &lt;B&gt;&lt;FONT COLOR=&apos;RED&apos;&gt;%1&lt;/FONT&gt;&lt;/B&gt;</translation>
     </message>
     <message>
         <location filename="../source/gui/mainwindow.ui" line="66"/>
-        <location filename="../source/gui/mainwindow.ui" line="101"/>
-        <location filename="../source/gui/mainwindow.ui" line="108"/>
-        <location filename="../source/gui/mainwindow.ui" line="115"/>
-        <location filename="../source/gui/mainwindow.ui" line="122"/>
-        <location filename="../source/gui/mainwindow.ui" line="129"/>
-        <location filename="../source/gui/mainwindow.ui" line="225"/>
-        <source>TextLabel</source>
+        <source>Band</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../source/gui/mainwindow.ui" line="104"/>
+        <source>Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../source/gui/mainwindow.ui" line="114"/>
+        <source>Auto OFF</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../source/gui/mainwindow.ui" line="124"/>
+        <source>Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../source/gui/mainwindow.ui" line="134"/>
+        <source>SP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../source/gui/mainwindow.ui" line="144"/>
+        <source>CW speed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../source/gui/mainwindow.ui" line="243"/>
+        <source> -</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

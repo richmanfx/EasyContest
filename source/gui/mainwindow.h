@@ -57,8 +57,19 @@ private:
 
     QVariant host;      // Хост и порт для подключения по TCI к программе ExpertSDR
     QVariant port;
-
     QVariant debug_level;       // Уровень логирования
+
+    // Цвет и размер шрифтов
+    QVariant call_font_color;
+    QVariant call_font_size;
+    QVariant call_font_bold;
+    QVariant num_font_size;
+    QVariant num_font_bold;
+    QVariant rx_num_font_color;
+    QVariant tx_num_font_color;
+    QVariant label_font_size;
+    QVariant label_font_bold;
+
     QVariant contest_name;      // Название контеста
     QVariant tour_count;        // Количество минитуров
     QVariant tour_duration;     // Длительность одного минитура в минутах
