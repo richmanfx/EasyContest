@@ -4,7 +4,13 @@
 #include <QGraphicsEffect>
 
 CustomLineEdit::CustomLineEdit(QWidget *parent) : QLineEdit(parent) {
-       CustomLineEdit::setMaxLength(10);        // Максимальное количество символов
+    int maxSymbolCount = 10;        // Максимальное количество символов
+    CustomLineEdit::setMaxLength(maxSymbolCount);
+    QString bigSymbolsMask = ">";
+    for(int i=1; i<=maxSymbolCount; i++) {
+        bigSymbolsMask += "X";
+    }
+    CustomLineEdit::setInputMask(bigSymbolsMask);
 }
 
 CustomLineEdit::~CustomLineEdit() {
