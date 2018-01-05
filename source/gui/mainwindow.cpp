@@ -44,6 +44,10 @@ MainWindow::MainWindow(QWidget *parent, QString name, QString configDir, QString
     connect(clearCallShortcut, &QGlobalShortcut::activated, this, &MainWindow::clearCall);
     clearCallShortcut->setShortcut(QKeySequence("Alt+Q"));
 
+    clearAllLineEdit = new QGlobalShortcut(this);
+    connect(clearAllLineEdit, &QGlobalShortcut::activated, this, &MainWindow::clearAllFields);
+    clearAllLineEdit->setShortcut(QKeySequence("Alt+W"));
+
     // Подключение к ExpertSDR2
     sdrConnect();
 
@@ -162,6 +166,13 @@ void MainWindow::contextMenuEvent(QContextMenuEvent *event)
 void MainWindow::clearCall() {
     callLineEdit->clear();
 }
+
+// Очистить все поля ввода
+void MainWindow::clearAllFields() {
+    callLineEdit->clear();
+    numberLineEdit->clear();
+}
+
 
 void MainWindow::onConnect(bool state) {
     state = true;

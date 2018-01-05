@@ -28,6 +28,7 @@ public:
     void sdrConnect();
     void contextMenuEvent(QContextMenuEvent *event);
     void clearCall();
+    void clearAllFields();
     ~MainWindow();
 
 private slots:
@@ -68,6 +69,7 @@ private:
     QGlobalShortcut *aboutShortcut;
     QGlobalShortcut *exitShortcut;
     QGlobalShortcut *clearCallShortcut;
+    QGlobalShortcut *clearAllLineEdit;
 
     // Изменения координат при перемещении беззаголовочного окна
     int dx;
