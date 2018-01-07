@@ -12,6 +12,8 @@
 #include "../customlineedit.h"
 
 #define VERSION "0.1.0"
+#define CONFIG_DIR ".easycontest"
+#define CONFIG_FILE "ec.cnf"
 
 using namespace ExpertElectronics;
 
@@ -19,9 +21,8 @@ class MainWindow : public QMainWindow, protected Ui::MainWindow {
     Q_OBJECT
 
 public:
-    explicit MainWindow(
-            QWidget *parent = 0, QString name = "MainForm",
-            QString configDir = ".easycontest", QString configFile = "ec.cnf");
+    explicit MainWindow(QWidget *parent = 0, QString name = "MainForm", QString configDir = CONFIG_DIR, QString configFile = CONFIG_FILE);
+
     void saveSettings();
     void loadSettings();
     void loadContestSettings();
@@ -47,7 +48,6 @@ private slots:
     void aboutAction();
     void exitAction();
     void loadContest();
-//    void nextLineEdit(CustomLineEdit *customLineEdit);
 
     void mouseMoveEvent(QMouseEvent *e);
     void mousePressEvent(QMouseEvent *e);
@@ -55,6 +55,7 @@ private slots:
 
 
 private:
+    QString configDir = CONFIG_DIR;
     Ui::MainWindow *ui;
     QSettings *settings;
     QSettings *contestSettings;
@@ -71,6 +72,7 @@ private:
     QVariant port;
     QVariant debug_level;       // Уровень логирования
     QVariant time_shift;        // Сдвиг времени относительно компьютерного, в минутах
+    QVariant contests_configs_dir;       // Имя директории с контест-конфигами
 
     // Цвет и размер шрифтов
     QVariant call_font_color;

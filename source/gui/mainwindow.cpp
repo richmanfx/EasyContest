@@ -7,7 +7,7 @@
 #include <iomanip>
 
 MainWindow::MainWindow(QWidget *parent, QString name, QString configDir, QString configFile) :
-    QMainWindow(parent), pPlotter(new QCustomPlot) {
+    QMainWindow(parent) {    //, pPlotter(new QCustomPlot) {
 
     setupUi(this);
 
@@ -56,14 +56,7 @@ MainWindow::MainWindow(QWidget *parent, QString name, QString configDir, QString
     time_label->setFont(field_font);
     auto_CQ_label->setFont(field_font);
 
-    // Прочитать настройки из контест-конфига
-    QString contestConfigDir = "contests";
-    QString contestConfigFile = "minitest.ec";
-    QString fullContestConfigFile =
-            QDir::homePath() + QDir::separator() + configDir + QDir::separator() + contestConfigDir + QDir::separator() + contestConfigFile;
-    contestSettings = new QSettings(fullContestConfigFile, QSettings::IniFormat);
-    contestSettings->setIniCodec("UTF-8");
-    loadContestSettings();
+
 
     /***** Горячие клавиши ******/
     // Помощь в PDF-формате
@@ -186,6 +179,9 @@ void MainWindow::loadSettings() {
 
     // Сдвиг времени в часах относително компьютерного
     time_shift = settings->value("TimeShift");
+
+    // Имя директории с контест-конфигами
+    contests_configs_dir = settings->value("ContestsConfigsDir");
 
     // Считать геометрию всех окон из настроек
     settings->beginGroup("Windows");
@@ -348,6 +344,24 @@ void MainWindow::exitAction() {
 // Загрузить новый контест из списка конфигурационных файлов контестов
 void MainWindow::loadContest() {
     qInfo(logInfo()) << "Загрузка нового контеста";
+
+    // Получить список файлов из директории контест-конфигов
+    QDir contest_dir(QDir::homePath() + QDir::separator() + configDir + QDir::separator() + contests_configs_dir.toString());
+    QStringList files_mask; files_mask << "*.ec";
+    QStringList contests_configs_list = contest_dir.entryList(files_mask);
+
+    // Вывести список контест-конфигов в новую форму для выбора
+
+
+
+    // Прочитать настройки из контест-конфига
+//    QString contestConfigDir = "contests";
+    QString contestConfigFile = "minitest.ec";
+//    QString fullContestConfigFile =
+//            QDir::homePath() + QDir::separator() + configDir + QDir::separator() + contestConfigDir + QDir::separator() + contestConfigFile;
+//    contestSettings = new QSettings(fullContestConfigFile, QSettings::IniFormat);
+//    contestSettings->setIniCodec("UTF-8");
+//    loadContestSettings();
 
 }
 
