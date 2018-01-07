@@ -25,28 +25,28 @@ MainWindow::MainWindow(QWidget *parent, QString name, QString configDir, QString
     QFont field_font;
     field_font.setFamily("Monospace");
 
-    // Поле ввода позывного
+    // Поле ввода позывного - параметры шрифтов
     palette->setColor(QPalette::Text, call_font_color.toString());
     callLineEdit->setPalette(*palette);
     field_font.setBold(call_font_bold.toBool());
     field_font.setPixelSize(call_font_size.toInt());
     callLineEdit->setFont(field_font);
 
-    // Поле принимаемого номера
+    // Поле принимаемого номера - параметры шрифтов
     palette->setColor(QPalette::Text, rx_num_font_color.toString());
     numberLineEdit->setPalette(*palette);
     field_font.setBold(num_font_bold.toBool());
     field_font.setPixelSize(num_font_size.toInt());
     numberLineEdit->setFont(field_font);
 
-    // Поле-лейбл передаваемого номера
+    // Поле-лейбл передаваемого номера - параметры шрифтов
     palette->setColor(QPalette::Base, "lightGray");
     palette->setColor(QPalette::Text, tx_num_font_color.toString());
     field_font.setBold(num_font_bold.toBool());
     field_font.setPixelSize(num_font_size.toInt());
     tx_num_label->setPalette(*palette); tx_num_label->setFont(field_font);
 
-    // Лейблы
+    // Лейблы - параметры шрифтов
     field_font.setBold(label_font_bold.toBool());
     field_font.setPixelSize(label_font_size.toInt());
     band_label->setFont(field_font);
@@ -65,48 +65,59 @@ MainWindow::MainWindow(QWidget *parent, QString name, QString configDir, QString
     contestSettings->setIniCodec("UTF-8");
     loadContestSettings();
 
-    // Горячие клавиши
+    /***** Горячие клавиши ******/
+    // Помощь в PDF-формате
     helpShortcut = new QGlobalShortcut(this);
     connect(helpShortcut, &QGlobalShortcut::activated, this, &MainWindow::helpAction);
     helpShortcut->setShortcut(QKeySequence("Ctrl+Alt+H"));
-
+    // О программе
     aboutShortcut = new QGlobalShortcut(this);
     connect(aboutShortcut, &QGlobalShortcut::activated, this, &MainWindow::aboutAction);
     aboutShortcut->setShortcut(QKeySequence("Ctrl+Alt+A"));
-
+    // Выход из программы
     exitShortcut = new QGlobalShortcut(this);
     connect(exitShortcut, &QGlobalShortcut::activated, this, &MainWindow::exitAction);
     exitShortcut->setShortcut(QKeySequence("Ctrl+Alt+X"));
-
+    // Очистить поле ввода позывного
     clearCallShortcut = new QGlobalShortcut(this);
     connect(clearCallShortcut, &QGlobalShortcut::activated, this, &MainWindow::clearCall);
     clearCallShortcut->setShortcut(QKeySequence("Alt+Q"));
-
+    // Очистить все поля ввода
     clearAllLineEdit = new QGlobalShortcut(this);
     connect(clearAllLineEdit, &QGlobalShortcut::activated, this, &MainWindow::clearAllFields);
     clearAllLineEdit->setShortcut(QKeySequence("Alt+W"));
+    // Закгрузить новый контест
+    loadNewContest = new QGlobalShortcut(this);
+    connect(loadNewContest, &QGlobalShortcut::activated, this, &MainWindow::loadContest);
+    loadNewContest->setShortcut(QKeySequence("Ctrl+O"));
 
-    // Вывести первоначальное время
+
+    // Вывести время сразу при старте программы
     QTime current_time = QTime::currentTime();
     current_time = current_time.addSecs(time_shift.toInt() * 60);   // Из минут в секунды
     time_label->setText(current_time.toString("hh:mm"));
 
-    // Запустить таймер для вывода времени
-    timerId = startTimer(10000);    // Время выводится 1 раз в 10 секунд
+    // Запустить таймер для периодического обновления времени
+    timerId = startTimer(10000);    // 1 раз в 10 секунд
 
     // Подключение к ExpertSDR2
-    sdrConnect();
+    sdrConnect(true);
 
     // Вывести дату
     dateShow();
 
+    // Вывести на лейбл текущий диапазон из SDR
+    bandShow();
 
+
+    //================================================================================================================//
     // Соединиться по кнопке "Connect"
 //    connect(pbConnect, &QPushButton::clicked, this, &MainWindow::onConnect);
 
-    connect(&m_tciClient, &TciClient::openStatusChanged, this, &MainWindow::onConnectStatus);
+//    connect(&m_tciClient, &TciClient::openStatusChanged, this, &MainWindow::onConnectStatus);
 
 //    connect(&m_tciClient, &TciClient::message, teLog, &QTextEdit::append);
+    connect(&m_parser, &TciParser::message, this, &MainWindow::onSendMessage);
 
 //    connect(&m_tciClient.trxState(), &TciTrxState::stoped , [=](){ pbStart->setChecked(false); });
 
@@ -118,21 +129,25 @@ MainWindow::MainWindow(QWidget *parent, QString name, QString configDir, QString
 //    });
 //
 
-    // Начать передачу при нажатии Enter в поле ввода позывного или номера
+    // Начать передачу при нажатии Enter в поле ввода позывного
     connect(callLineEdit, &QLineEdit::returnPressed, [=]() {
-        if (!callLineEdit->text().isEmpty())
-            m_tciClient.trxState().setMacros(0u, callLineEdit->text());
-        callLineEdit->clear();
-        numberLineEdit->clear();
+        if (!callLineEdit->text().isEmpty()) {
+            if (!numberLineEdit->text().isEmpty()) {
+                m_tciClient.trxState().setMacros(0u, callLineEdit->text());
+                clearAllFields();
+                callLineEdit->setFocus();
+//                callLineEdit->end(false);
+            }
+        }
     });
 
     // Начать передачу при нажатии Enter в поле ввода номера
     connect(numberLineEdit, &QLineEdit::returnPressed, [=]() {
-        if (!callLineEdit->text().isEmpty())
+        if (!callLineEdit->text().isEmpty()) {
             m_tciClient.trxState().setMacros(0u, callLineEdit->text());
-        numberLineEdit->clear();
-        callLineEdit->clear();
-        callLineEdit->setFocus();
+            clearAllFields();
+            callLineEdit->setFocus();
+        }
     });
 
 
@@ -211,9 +226,43 @@ void MainWindow::loadContestSettings() {
 }
 
 
-void MainWindow::sdrConnect() {
-    QUrl t_url("ws://" + host.toString() + ":" + port.toString());
-    m_tciClient.open(t_url);
+// Подключиться к SDR
+void MainWindow::sdrConnect(bool state) {
+
+    if (state) {
+        QUrl t_url("ws://" + host.toString() + ":" + port.toString());
+        m_tciClient.open(t_url);
+    } else {
+        m_tciClient.close();
+    }
+}
+
+// Вывести на лейбл текущий диапазон из SDR
+void MainWindow::bandShow() {
+
+    // Пока только один первый trx используем
+    quint32 trx = 0u;
+
+    // Состояние SDR
+    TciTrxState& sdr_state = m_tciClient.trxState();
+
+    // Установить скорость CW ==> Не работает пока
+    m_tciClient.trxState().setCwSpeed(50);
+
+    QString cw_speed = QString::number(sdr_state.cwSpeed());
+    cw_speed_label->setText(cw_speed);
+
+    emit message(QStringLiteral("STOP;"));         //+ QString::number(trx) + QStringLiteral(",") + QStringLiteral("0,3500000") + QStringLiteral(";"));
+
+                 // QString::number(static_cast<qint64>(sdr_state.ddsFreq(trx))) +
+//                 QStringLiteral(";"));
+
+    QString sdr_freq = QString::number(static_cast<qint64>(sdr_state.ddsFreq(trx)));        // DDS частота
+
+
+//    QString is_start = QString::number(sdr_state.isStart());
+
+    band_label->setText(sdr_freq);
 }
 
 // Вывести на лейбл текущую дату
@@ -249,6 +298,12 @@ void MainWindow::contextMenuEvent(QContextMenuEvent *event)
     connect(aboutAction, SIGNAL(triggered(bool)), this, SLOT(aboutAction()));
     menu->addAction(aboutAction);
 
+    // Load Contest
+    QAction *loadContest = new QAction(tr("Load Contest") + " (Ctrt+O)", this);
+    connect(loadContest, SIGNAL(triggered(bool)), this, SLOT(loadContest()));
+    menu->addAction(loadContest);
+
+    // Разделитель
     menu->addSeparator();
 
     // Exit
@@ -270,32 +325,6 @@ void MainWindow::clearAllFields() {
     numberLineEdit->clear();
 }
 
-
-void MainWindow::onConnect(bool state) {
-    state = true;
-    if (state) {
-        QUrl t_url("ws://" + host.toString() + ":" + port.toString());
-        m_tciClient.open(t_url);
-        if (debug_level.toString().toLower() == "debug")
-            qDebug(logDebug()) << "open";
-//        pbConnect->setChecked(true);
-    } else {
-        m_tciClient.close();
-        if (debug_level.toString().toLower() == "debug")
-            qDebug(logDebug()) << "close";
-//        pbConnect->setChecked(false);
-    }
-}
-
-void MainWindow::onConnectStatus(bool state) {
-    if (state) {
-//        sbStatus->showMessage(tr("Connected"),2000);
-    } else {
-//        pbConnect->setChecked(false);
-//        sbStatus->showMessage(tr("Disconnected"), 2000);
-    }
-}
-
 // Показать помощь в PDF
 void MainWindow::helpAction() {
     QString help_file = QDir::currentPath() +
@@ -314,6 +343,12 @@ void MainWindow::aboutAction() {
 // Выход из приложения
 void MainWindow::exitAction() {
     this->close();
+}
+
+// Загрузить новый контест из списка конфигурационных файлов контестов
+void MainWindow::loadContest() {
+    qInfo(logInfo()) << "Загрузка нового контеста";
+
 }
 
 // Метод для перемещения беззаголовочного окна
@@ -343,3 +378,21 @@ void MainWindow::mouseReleaseEvent( QMouseEvent* e ) {
         setCursor( Qt::ArrowCursor );
     }
 }
+
+void MainWindow::onSendMessage(const QString &message)
+{
+    m_webSocket.sendTextMessage(message);
+}
+
+void MainWindow::onConnected()
+{
+    m_open = true;
+    emit openStatusChanged(m_open);
+}
+
+void MainWindow::onClosed()
+{
+    m_open = false;
+    emit openStatusChanged(m_open);
+}
+

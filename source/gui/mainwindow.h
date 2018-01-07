@@ -25,21 +25,28 @@ public:
     void saveSettings();
     void loadSettings();
     void loadContestSettings();
-    void sdrConnect();
+    void sdrConnect(bool);
     void dateShow();
     void timerEvent(QTimerEvent *timer_event);
     void contextMenuEvent(QContextMenuEvent *event);
     void clearCall();
     void clearAllFields();
+    void bandShow();
+    TciTrxState& trxState();
     ~MainWindow();
 
 private slots:
-    void onConnect(bool state);
-    void onConnectStatus(bool state);
+//    void onConnect(bool state);
+//    void onConnectStatus(bool state);
+
+    void onConnected();
+    void onClosed();
+    void onSendMessage(const QString &message);
 
     void helpAction();
     void aboutAction();
     void exitAction();
+    void loadContest();
 //    void nextLineEdit(CustomLineEdit *customLineEdit);
 
     void mouseMoveEvent(QMouseEvent *e);
@@ -53,8 +60,11 @@ private:
     QSettings *contestSettings;
 
     QCustomPlot *pPlotter;
-    TciClient m_tciClient;
 
+    TciClient m_tciClient;
+    bool       m_open;
+    QWebSocket  m_webSocket;
+    TciParser   m_parser;
     QMetaObject::Connection m_c1;
 
     QVariant host;      // Хост и порт для подключения по TCI к программе ExpertSDR
@@ -73,7 +83,8 @@ private:
     QVariant label_font_size;
     QVariant label_font_bold;
 
-    QVariant contest_name;      // Название контеста
+    // Параметры контеста
+    QVariant contest_name;      // Название
     QVariant tour_count;        // Количество минитуров
     QVariant tour_duration;     // Длительность одного минитура в минутах
     QVariant valid_bands;       // Допустимые диапазоны
@@ -84,6 +95,8 @@ private:
     QGlobalShortcut *exitShortcut;
     QGlobalShortcut *clearCallShortcut;
     QGlobalShortcut *clearAllLineEdit;
+    QGlobalShortcut *loadNewContest;
+
 
     // Изменения координат при перемещении беззаголовочного окна
     int dx;
@@ -93,6 +106,10 @@ private:
     int timerId;
 
 signals:
+    void message(QString);
+    void openStatusChanged(bool);
+
+
 
 
 };
