@@ -352,17 +352,17 @@ void MainWindow::loadContest() {
     QStringList contests_configs_list = contest_dir.entryList(files_mask);
 
     // Вывести список контест-конфигов в новую форму для выбора
-        // Открыть новую форму с "QListWidget"
-    ContestLoad *w2 = new ContestLoad;
+    /* Открыть новую форму с "QListWidget" */
+    ContestLoad *w2 = new ContestLoad(this, contests_configs_list);
     w2->setWindowTitle(tr("Contest load"));
     w2->show();
 
-        // По кнопке "Выбрать" или двойному щелчку ЛКМ получить имя файла контест-конфиге
+    /* По кнопке "Выбрать" или двойному щелчку ЛКМ получить имя файла контест-конфиге */
 
-        // Прочитать настройки из контест-конфига
+    /* Прочитать настройки из контест-конфига */
 
 //    QString contestConfigDir = "contests";
-    QString contestConfigFile = "minitest.ec";
+//    QString contestConfigFile = "minitest.ec";
 //    QString fullContestConfigFile =
 //            QDir::homePath() + QDir::separator() + configDir + QDir::separator() + contestConfigDir + QDir::separator() + contestConfigFile;
 //    contestSettings = new QSettings(fullContestConfigFile, QSettings::IniFormat);

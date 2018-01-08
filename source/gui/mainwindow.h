@@ -12,7 +12,7 @@
 #include "../customlineedit.h"
 
 #define VERSION "0.1.0"
-#define CONFIG_DIR ".easycontest"
+#define CONFIG_DIR ".easycontest"       // Ещё такое же значение и в "contestload.h"
 #define CONFIG_FILE "ec.cnf"
 
 using namespace ExpertElectronics;
