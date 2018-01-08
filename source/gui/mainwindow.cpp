@@ -5,9 +5,10 @@
 #include <string>
 #include <iostream>
 #include <iomanip>
+#include "contestload.h"
 
 MainWindow::MainWindow(QWidget *parent, QString name, QString configDir, QString configFile) :
-    QMainWindow(parent) {    //, pPlotter(new QCustomPlot) {
+    QMainWindow(parent) {
 
     setupUi(this);
 
@@ -351,10 +352,15 @@ void MainWindow::loadContest() {
     QStringList contests_configs_list = contest_dir.entryList(files_mask);
 
     // Вывести список контест-конфигов в новую форму для выбора
+        // Открыть новую форму с "QListWidget"
+    ContestLoad *w2 = new ContestLoad;
+    w2->setWindowTitle(tr("Contest load"));
+    w2->show();
 
+        // По кнопке "Выбрать" или двойному щелчку ЛКМ получить имя файла контест-конфиге
 
+        // Прочитать настройки из контест-конфига
 
-    // Прочитать настройки из контест-конфига
 //    QString contestConfigDir = "contests";
     QString contestConfigFile = "minitest.ec";
 //    QString fullContestConfigFile =

@@ -37,15 +37,18 @@ SOURCES += \
 	source/main.cpp \
 	source/gui/mainwindow.cpp \
     source/logging_categories.cpp \ 
-    source/customlineedit.cpp
+    source/customlineedit.cpp \
+    contestload.cpp
 
 HEADERS += \ 
 	source/gui/mainwindow.h \
     source/logging_categories.h \
-    source/customlineedit.h
+    source/customlineedit.h \
+    contestload.h
 
 FORMS += \
-	source/gui/mainwindow.ui
+	source/gui/mainwindow.ui \
+    contestload.ui
 
 include(libs/TciClient/TciClient.pri)
 include(libs/QCustomPlot/QCustomPlot.pri)
