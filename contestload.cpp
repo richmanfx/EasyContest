@@ -1,5 +1,7 @@
 #include "contestload.h"
 #include "ui_contestload.h"
+#include "source/logging_categories.h"
+#include "source/gui/mainwindow.h"
 #include <QDir>
 
 ContestLoad::ContestLoad(QWidget *parent, QStringList contests_configs_list) :
@@ -45,9 +47,25 @@ ContestLoad::ContestLoad(QWidget *parent, QStringList contests_configs_list) :
         row++;
     }
     ui->tableWidget->resizeColumnsToContents();     // Ресайзить колонки по содержимому
+
+
+    //
+//    connect(ui->tableWidget->selectedItems(), SIGNAL( cellChanged(int, int)),);
 }
 
 ContestLoad::~ContestLoad()
 {
     delete ui;
+}
+
+// Нажажатие кнопки "OK"
+void ContestLoad::on_buttonBox_clicked()
+{
+    // Получить выбранное имя файла контест-конфига
+    QList<QTableWidgetItem *> selected_line_list = ui->tableWidget->selectedItems();
+    contest_config_file_name = selected_line_list.first()->text();
+    qInfo(logInfo()) << contest_config_file_name;
+
+    // TODO: Здесь запускать слот нужно!!!
+//    loadContestSettings(contest_config_file_name);
 }

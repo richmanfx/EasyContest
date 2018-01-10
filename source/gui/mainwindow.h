@@ -25,11 +25,11 @@ public:
 
     void saveSettings();
     void loadSettings();
-    void loadContestSettings();
+    void loadContestSettings(QString config_filq_name);
     void sdrConnect(bool);
     void dateShow();
     void timerEvent(QTimerEvent *timer_event);
-    void contextMenuEvent(QContextMenuEvent *event);
+    void contextMenuEvent();
     void clearCall();
     void clearAllFields();
     void bandShow();

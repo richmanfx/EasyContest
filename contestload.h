@@ -1,6 +1,7 @@
 #ifndef CONTESTLOAD_H
 #define CONTESTLOAD_H
 
+#include <QAbstractButton>
 #include <QDialog>
 #include <QSettings>
 
@@ -17,6 +18,11 @@ class ContestLoad : public QDialog
 public:
     explicit ContestLoad(QWidget *parent = 0, QStringList contests_configs_list = QStringList());
     ~ContestLoad();
+    QString contest_config_file_name;
+
+private slots:
+    void on_buttonBox_clicked();
+
 
 private:
     Ui::ContestLoad *ui;
@@ -25,6 +31,7 @@ private:
 
     // Параметры контеста
     QVariant contest_name;      // Название
+
 };
 
 #endif // CONTESTLOAD_H

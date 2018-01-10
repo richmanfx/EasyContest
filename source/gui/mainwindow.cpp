@@ -210,7 +210,17 @@ void MainWindow::loadSettings() {
 }
 
 // Считать настройки из файла конфигурации контеста
-void MainWindow::loadContestSettings() {
+void MainWindow::loadContestSettings(QString config_filq_name) {
+
+    QString fullContestConfigFile =
+            QDir::homePath() + QDir::separator() +
+            configDir + QDir::separator() +
+            contests_configs_dir.toString() + QDir::separator() +
+            config_filq_name;
+
+    contestSettings = new QSettings(fullContestConfigFile, QSettings::IniFormat);
+    contestSettings->setIniCodec("UTF-8");
+
     contest_name = contestSettings->value("contest_name");
     tour_count = contestSettings->value("tour_count");
     tour_duration = contestSettings->value("tour_duration");
@@ -281,7 +291,7 @@ void MainWindow::timerEvent(QTimerEvent *timer_event) {
 }
 
 // Контекстное меню
-void MainWindow::contextMenuEvent(QContextMenuEvent *event)
+void MainWindow::contextMenuEvent()
 {
     QMenu *menu = new QMenu();
 
@@ -352,10 +362,15 @@ void MainWindow::loadContest() {
     QStringList contests_configs_list = contest_dir.entryList(files_mask);
 
     // Вывести список контест-конфигов в новую форму для выбора
-    /* Открыть новую форму с "QListWidget" */
     ContestLoad *w2 = new ContestLoad(this, contests_configs_list);
     w2->setWindowTitle(tr("Contest load"));
     w2->show();
+
+    // Загрузить настройки из контест-конфига из второй формы
+
+//    loadContestSettings(w2->contest_config_file_name);
+
+
 
     /* По кнопке "Выбрать" или двойному щелчку ЛКМ получить имя файла контест-конфиге */
 
@@ -367,7 +382,7 @@ void MainWindow::loadContest() {
 //            QDir::homePath() + QDir::separator() + configDir + QDir::separator() + contestConfigDir + QDir::separator() + contestConfigFile;
 //    contestSettings = new QSettings(fullContestConfigFile, QSettings::IniFormat);
 //    contestSettings->setIniCodec("UTF-8");
-//    loadContestSettings();
+
 
 }
 
