@@ -209,6 +209,7 @@ void MainWindow::loadSettings() {
 
 }
 
+
 // Считать настройки из файла конфигурации контеста
 void MainWindow::loadContestSettings(QString config_filq_name) {
 
@@ -362,13 +363,13 @@ void MainWindow::loadContest() {
     QStringList contests_configs_list = contest_dir.entryList(files_mask);
 
     // Вывести список контест-конфигов в новую форму для выбора
-    ContestLoad *w2 = new ContestLoad(this, contests_configs_list);
-    w2->setWindowTitle(tr("Contest load"));
-    w2->show();
+    ContestLoad *contestLoadForm = new ContestLoad(this, contests_configs_list);
+    contestLoadForm->setWindowTitle(tr("Contest load"));
+    contestLoadForm->show();
 
-    // Загрузить настройки из контест-конфига из второй формы
-
-//    loadContestSettings(w2->contest_config_file_name);
+    // Загрузить настройки из контест-конфига из формы "contestload"
+    connect(&contestLoadForm, &ContestLoad::signalFromOkButton, this, &MainWindow::loadContestSettings(contestLoadForm->contest_config_file_name));
+//    loadContestSettings(contestLoadForm->contest_config_file_name);
 
 
 

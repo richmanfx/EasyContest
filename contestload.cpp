@@ -51,6 +51,8 @@ ContestLoad::ContestLoad(QWidget *parent, QStringList contests_configs_list) :
 
     //
 //    connect(ui->tableWidget->selectedItems(), SIGNAL( cellChanged(int, int)),);
+
+//
 }
 
 ContestLoad::~ContestLoad()
@@ -58,14 +60,16 @@ ContestLoad::~ContestLoad()
     delete ui;
 }
 
-// Нажажатие кнопки "OK"
-void ContestLoad::on_buttonBox_clicked()
+
+// В buttonBox нажата кнопка "OK"
+void ContestLoad::on_buttonBox_accepted()
 {
     // Получить выбранное имя файла контест-конфига
     QList<QTableWidgetItem *> selected_line_list = ui->tableWidget->selectedItems();
     contest_config_file_name = selected_line_list.first()->text();
     qInfo(logInfo()) << contest_config_file_name;
 
-    // TODO: Здесь запускать слот нужно!!!
-//    loadContestSettings(contest_config_file_name);
+    // Здесь нужно послать сигнал для чтения контест-конфига
+
+
 }

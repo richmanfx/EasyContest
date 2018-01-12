@@ -21,8 +21,7 @@ public:
     QString contest_config_file_name;
 
 private slots:
-    void on_buttonBox_clicked();
-
+    void on_buttonBox_accepted();
 
 private:
     Ui::ContestLoad *ui;
@@ -31,6 +30,9 @@ private:
 
     // Параметры контеста
     QVariant contest_name;      // Название
+
+signals:
+    void signalFromOkButton();    // Сигнал от кнопки "ОК"
 
 };
 
