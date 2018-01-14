@@ -1,7 +1,7 @@
 #include "contestload.h"
 #include "ui_contestload.h"
-#include "source/logging_categories.h"
-#include "source/mainwindow.h"
+#include "logging_categories.h"
+#include "mainwindow.h"
 #include <QDir>
 
 ContestLoad::ContestLoad(QWidget *parent, QStringList contests_configs_list) :

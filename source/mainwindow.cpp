@@ -292,7 +292,7 @@ void MainWindow::timerEvent(QTimerEvent *timer_event) {
 }
 
 // Контекстное меню
-void MainWindow::contextMenuEvent(QContextMenuEvent *event)
+void MainWindow::contextMenuEvent(QContextMenuEvent *event)     // Не удалять неиспользуемый *event - не будет работать меню по ПКМ
 {
     QMenu *menu = new QMenu();
 

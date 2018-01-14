@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QSettings>
 #include <QDir>
-#include <TciClient>
+#include "tciclient.h"
 #include <QCustomPlot>
 #include <QDesktopServices>
 #include "ui_mainwindow.h"

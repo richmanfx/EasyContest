@@ -16,7 +16,7 @@ set (SOURCES
         libs/TciClient/TciTrxState/TciTrxState.cpp
 )
 
-set (MOC_HEADERS
+set (HEADERS
         source/mainwindow.h
         source/logging_categories.h
         source/customlineedit.h
@@ -34,7 +34,7 @@ set (UIS
         contestload.ui
 )
 
-set ( RESOURCES
+set (RESOURCES
         resource/resource.qrc
 )
 
@@ -86,6 +86,9 @@ add_executable(EasyContest
         source/logging_categories.cpp
         source/logging_categories.h
         source/main.cpp
+        source/contestload.cpp
+        source/contestload.h
+        source/contestload.ui
         tmp/moc_customlineedit.cpp
         tmp/moc_mainwindow.cpp
         tmp/moc_predefs.h
@@ -101,9 +104,6 @@ add_executable(EasyContest
         tmp/ui_mainwindow.h
         translations/EasyContest_ru.qm
         translations/EasyContest_ru.ts
-        contestload.cpp
-        contestload.h
-        contestload.ui
         EasyContest.pro)
 
 # указываем, какие библиотеки необходимо подключить
