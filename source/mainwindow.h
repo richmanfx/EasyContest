@@ -29,7 +29,7 @@ public:
     void sdrConnect(bool);
     void dateShow();
     void timerEvent(QTimerEvent *timer_event);
-    void contextMenuEvent();
+    void contextMenuEvent(QContextMenuEvent *event);
     void clearCall();
     void clearAllFields();
     void bandShow();
