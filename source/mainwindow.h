@@ -10,6 +10,7 @@
 #include "ui_mainwindow.h"
 #include "qglobalshortcut.h"
 #include "customlineedit.h"
+#include "contestload.h"
 
 #define VERSION "0.1.0"
 #define CONFIG_DIR ".easycontest"       // Ещё такое же значение и в "contestload.h"
@@ -22,10 +23,8 @@ class MainWindow : public QMainWindow, protected Ui::MainWindow {
 
 public:
     explicit MainWindow(QWidget *parent = 0, QString name = "MainForm", QString configDir = CONFIG_DIR, QString configFile = CONFIG_FILE);
-
     void saveSettings();
     void loadSettings();
-    void loadContestSettings(QString config_filq_name);
     void sdrConnect(bool);
     void dateShow();
     void timerEvent(QTimerEvent *timer_event);
@@ -36,6 +35,10 @@ public:
     TciTrxState& trxState();
     ~MainWindow();
 
+public slots:
+    void loadContestSettings(QString config_filq_name);
+    void aboutAction();
+
 private slots:
 //    void onConnect(bool state);
 //    void onConnectStatus(bool state);
@@ -45,7 +48,7 @@ private slots:
     void onSendMessage(const QString &message);
 
     void helpAction();
-    void aboutAction();
+
     void exitAction();
     void loadContest();
 
@@ -62,17 +65,19 @@ private:
 
     QCustomPlot *pPlotter;
 
-    TciClient m_tciClient;
-    bool       m_open;
+    TciClient   m_tciClient;
+    bool        m_open;
     QWebSocket  m_webSocket;
     TciParser   m_parser;
     QMetaObject::Connection m_c1;
+    ContestLoad *contestLoadForm;       // Форма загрузки контест-конфига
 
-    QVariant host;      // Хост и порт для подключения по TCI к программе ExpertSDR
+
+    QVariant host;                  // Хост и порт для подключения по TCI к программе ExpertSDR
     QVariant port;
-    QVariant debug_level;       // Уровень логирования
-    QVariant time_shift;        // Сдвиг времени относительно компьютерного, в минутах
-    QVariant contests_configs_dir;       // Имя директории с контест-конфигами
+    QVariant debug_level;           // Уровень логирования
+    QVariant time_shift;            // Сдвиг времени относительно компьютерного, в минутах
+    QVariant contests_configs_dir;  // Имя директории с контест-конфигами
 
     // Цвет и размер шрифтов
     QVariant call_font_color;

@@ -113,6 +113,9 @@ MainWindow::MainWindow(QWidget *parent, QString name, QString configDir, QString
 //    connect(&m_tciClient, &TciClient::message, teLog, &QTextEdit::append);
     connect(&m_parser, &TciParser::message, this, &MainWindow::onSendMessage);
 
+//    connect(contestLoadForm, &QDialogButtonBox::accepted, this, &MainWindow::dateShow); // (contestLoadForm->contest_config_file_name)
+//    connect(contestLoadForm, &ContestLoad::signalFromOkButton, this, &MainWindow::dateShow);
+
 //    connect(&m_tciClient.trxState(), &TciTrxState::stoped , [=](){ pbStart->setChecked(false); });
 
 //    connect(pbStart, &QPushButton::toggled, [=](bool state) {
@@ -122,6 +125,7 @@ MainWindow::MainWindow(QWidget *parent, QString name, QString configDir, QString
 //            m_tciClient.trxState().stop();
 //    });
 //
+
 
     // Начать передачу при нажатии Enter в поле ввода позывного
     connect(callLineEdit, &QLineEdit::returnPressed, [=]() {
@@ -363,8 +367,9 @@ void MainWindow::loadContest() {
     QStringList contests_configs_list = contest_dir.entryList(files_mask);
 
     // Вывести список контест-конфигов в новую форму для выбора
-    ContestLoad *contestLoadForm = new ContestLoad(this, contests_configs_list);
+    contestLoadForm = new ContestLoad(this, contests_configs_list);
     contestLoadForm->setWindowTitle(tr("Contest load"));
+
     contestLoadForm->show();
 
     // Загрузить настройки из контест-конфига из формы "contestload"

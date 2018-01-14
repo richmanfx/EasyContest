@@ -16,12 +16,17 @@ class ContestLoad : public QDialog
     Q_OBJECT
 
 public:
-    explicit ContestLoad(QWidget *parent = 0, QStringList contests_configs_list = QStringList());
+    explicit ContestLoad(QWidget *parent, QStringList contests_configs_list = QStringList());
     ~ContestLoad();
     QString contest_config_file_name;
 
+
 private slots:
     void on_buttonBox_accepted();
+
+public slots:
+    void second_buttonBox_accepted();
+    void double_click();
 
 private:
     Ui::ContestLoad *ui;
@@ -33,6 +38,7 @@ private:
 
 signals:
     void signalFromOkButton();    // Сигнал от кнопки "ОК"
+
 
 };
 
