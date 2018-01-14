@@ -3,7 +3,7 @@
 ######################################################################
 
 # Используемые Qt модули
-QT += widgets gui core network websockets 
+QT += widgets gui core network websockets opengl
 
 # На выходе приложение, не библиотека
 TEMPLATE = app
@@ -35,20 +35,20 @@ CONFIG += c++11
 
 SOURCES += \
 	source/main.cpp \
-	source/gui/mainwindow.cpp \
+	source/mainwindow.cpp \
     source/logging_categories.cpp \ 
     source/customlineedit.cpp \
-    contestload.cpp
+    source/contestload.cpp
 
 HEADERS += \ 
-	source/gui/mainwindow.h \
+	source/mainwindow.h \
     source/logging_categories.h \
     source/customlineedit.h \
-    contestload.h
+    source/contestload.h
 
 FORMS += \
-	source/gui/mainwindow.ui \
-    contestload.ui
+	source/mainwindow.ui \
+    source/contestload.ui
 
 include(libs/TciClient/TciClient.pri)
 include(libs/QCustomPlot/QCustomPlot.pri)

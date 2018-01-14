@@ -1,7 +1,7 @@
 #include <QDebug>
 #include "mainwindow.h"
-#include "../logging_categories.h"
-#include "../customlineedit.h"
+#include "logging_categories.h"
+#include "customlineedit.h"
 #include <string>
 #include <iostream>
 #include <iomanip>
@@ -368,7 +368,7 @@ void MainWindow::loadContest() {
     contestLoadForm->show();
 
     // Загрузить настройки из контест-конфига из формы "contestload"
-    connect(&contestLoadForm, &ContestLoad::signalFromOkButton, this, &MainWindow::loadContestSettings(contestLoadForm->contest_config_file_name));
+//    connect(reinterpret_cast<const QObject *>(&contestLoadForm), &ContestLoad::signalFromOkButton, this, MainWindow::loadContestSettings(contestLoadForm->contest_config_file_name));
 //    loadContestSettings(contestLoadForm->contest_config_file_name);
 
 

@@ -18,6 +18,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 # Input
-HEADERS += gui/mainwindow.h logging_categories.h customlineedit.h
-FORMS += gui/mainwindow.ui
-SOURCES += main.cpp gui/mainwindow.cpp logging_categories.cpp customlineedit.cpp
+HEADERS += mainwindow.h logging_categories.h customlineedit.h
+FORMS += mainwindow.ui
+SOURCES += main.cpp mainwindow.cpp logging_categories.cpp customlineedit.cpp

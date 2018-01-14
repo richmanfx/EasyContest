@@ -9,7 +9,7 @@
 #include <QDesktopServices>
 #include "ui_mainwindow.h"
 #include "qglobalshortcut.h"
-#include "../customlineedit.h"
+#include "customlineedit.h"
 
 #define VERSION "0.1.0"
 #define CONFIG_DIR ".easycontest"       // Ещё такое же значение и в "contestload.h"

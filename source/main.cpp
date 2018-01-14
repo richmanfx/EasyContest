@@ -2,7 +2,7 @@
 #include <QTranslator>
 #include <QDir>
 #include <QMessageLogContext>
-#include "gui/mainwindow.h"
+#include "mainwindow.h"
 
 // Указатель на файл логирования
 QScopedPointer<QFile>   m_logFile;
