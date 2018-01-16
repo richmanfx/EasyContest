@@ -6,6 +6,7 @@
 #include <iostream>
 #include <iomanip>
 #include "contestload.h"
+#include "ui_contestload.h"
 
 MainWindow::MainWindow(QWidget *parent, QString name, QString configDir, QString configFile) :
     QMainWindow(parent) {
@@ -113,8 +114,12 @@ MainWindow::MainWindow(QWidget *parent, QString name, QString configDir, QString
 //    connect(&m_tciClient, &TciClient::message, teLog, &QTextEdit::append);
     connect(&m_parser, &TciParser::message, this, &MainWindow::onSendMessage);
 
-//    connect(contestLoadForm, &QDialogButtonBox::accepted, this, &MainWindow::dateShow); // (contestLoadForm->contest_config_file_name)
-//    connect(contestLoadForm, &ContestLoad::signalFromOkButton, this, &MainWindow::dateShow);
+//    connect(contestLoadForm, &QDialogButtonBox::accepted, this, &MainWindow::contestLoadForm->contest_config_file_name);
+//    connect(contestLoadForm->ui->tableWidget , &QTableWidget::cellDoubleClicked, this, &MainWindow::receivedData);
+
+    // Приём данных из формы загрузки контест-конфига
+    connect(contestLoadForm, SIGNAL(sendData()), this, SLOT(recieveData()));
+//    connect (contestLoadForm, &ContestLoad::sendData, this, &MainWindow::receiveData);
 
 //    connect(&m_tciClient.trxState(), &TciTrxState::stoped , [=](){ pbStart->setChecked(false); });
 
@@ -436,4 +441,10 @@ void MainWindow::onClosed()
     m_open = false;
     emit openStatusChanged(m_open);
 }
+
+void MainWindow::receiveData()
+{
+    qInfo(logInfo()) << "Сработал receiveData slot: " << contestLoadForm->contest_config_file_name;
+}
+
 

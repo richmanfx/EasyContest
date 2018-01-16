@@ -19,7 +19,7 @@ public:
     explicit ContestLoad(QWidget *parent, QStringList contests_configs_list = QStringList());
     ~ContestLoad();
     QString contest_config_file_name;
-
+    Ui::ContestLoad *ui;
 
 private slots:
     void on_buttonBox_accepted();
@@ -29,7 +29,6 @@ public slots:
     void double_click();
 
 private:
-    Ui::ContestLoad *ui;
     QSettings *contestSettings;
     QString configDir = CONFIG_DIR;
 
@@ -37,7 +36,8 @@ private:
     QVariant contest_name;      // Название
 
 signals:
-    void signalFromOkButton();    // Сигнал от кнопки "ОК"
+//    void signalFromOkButton();    // Сигнал от кнопки "ОК"
+    void sendData();     // Сигнал отправки данных в главную форму
 
 
 };

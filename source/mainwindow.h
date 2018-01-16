@@ -56,6 +56,8 @@ private slots:
     void mousePressEvent(QMouseEvent *e);
     void mouseReleaseEvent(QMouseEvent *e);
 
+    void receiveData();     //   SLOT приёмника данных из формы выбора контест-конфига
+
 
 private:
     QString configDir = CONFIG_DIR;

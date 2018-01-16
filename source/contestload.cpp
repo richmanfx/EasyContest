@@ -49,11 +49,9 @@ ContestLoad::ContestLoad(QWidget *parent, QStringList contests_configs_list) :
     ui->tableWidget->resizeColumnsToContents();     // Ресайзить колонки по содержимому
 
 
-//    connect(ui->buttonBox, SIGNAL(accepted()), this, SLOT(second_buttonBox_accepted()) );
-//
-
     // Для кнопки "Ok"
     connect(ui->buttonBox, &QDialogButtonBox::accepted, this,  &ContestLoad::second_buttonBox_accepted);
+    // Можно так: connect(ui->buttonBox, SIGNAL(accepted()), this, SLOT(second_buttonBox_accepted()) );
 
     // Двойной щелчок по строке в таблице
     connect(ui->tableWidget, &QTableWidget::cellDoubleClicked, this, &ContestLoad::double_click);
@@ -79,10 +77,12 @@ void ContestLoad::on_buttonBox_accepted()
 void ContestLoad::second_buttonBox_accepted()
 {
     qInfo(logInfo()) << "Сработал второй слот!!!";
-    emit signalFromOkButton();
+    emit sendData();
 }
 
 void ContestLoad::double_click()
 {
     qInfo(logInfo()) << "Сработал третий слот!!!";
+    emit sendData();
+    close();
 }

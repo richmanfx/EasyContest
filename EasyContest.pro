@@ -3,7 +3,7 @@
 ######################################################################
 
 # Используемые Qt модули
-QT += widgets gui core network websockets opengl
+QT += widgets gui core network websockets 
 
 # На выходе приложение, не библиотека
 TEMPLATE = app
